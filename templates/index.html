@@ -7,15 +7,30 @@
 
 <div class="main_container">
 
+<div id="popup" class="screen_overlay">
+
   <div class="event_menu_popup">
 
     <h2>Test Please Ignore</h2>
     <a class="close" href="#bottom">x</a>
-    <p>
-      Here is a whole bunch of text.
-    </p>
+    <br />
+    <div id="main">
+      <form method="post" action="{{ url_for('submitted_form') }}">
+        <label for="eventName">Name:</label>
+        <input type="text" name="eventName"><br />
+        <label for="eventDate">Date:</label>
+        <input type="date" name="eventDate"><br />
+        <label for="eventLocation">Location:</label>
+        <input type="text" name="eventLocation"><br />
+        <label for="eventDetails">Details:</label>
+        <textarea name="eventDetails"></textarea><br />
+        <input type="submit">
+      </form>
+    </div>
 
   </div>
+
+</div>
 
   <div class="events_menu">
 
@@ -56,7 +71,7 @@
 
 <br>
 
-<a href="#event_menu_popup">Go To Form</a>
+<a href="#popup">Go To Form</a>
 
 <a href="/note">Go To Note</a>
 
