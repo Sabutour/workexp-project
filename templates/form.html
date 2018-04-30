@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Submit a form</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+        <h1>Submit a form</h1>
+      </div>
+      <div id="main">
+        <form method="post" action="{{ url_for('submitted_form') }}">
+          <label for="eventName">Name:</label>
+          <input type="text" name="eventName"><br />
+          <label for="eventDate">Date:</label>
+          <input type="date" name="eventDate"><br />
+          <label for="eventLocation">Location:</label>
+          <input type="text" name="eventLocation"><br />
+          <label for="eventDetails">Details:</label>
+          <textarea name="eventDetails"></textarea><br />
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

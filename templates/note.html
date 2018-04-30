@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Submit a form</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+    <div id="container">
+      <div class="pagetitle">
+        <h1>Submit a note</h1>
+      </div>
+      <div id="main">
+        <form method="post" action="{{ url_for('submitted_note') }}">
+          <label for="noteName">Name:</label>
+          <input type="text" name="noteName"><br />
+          <label for="noteContent">Content:</label>
+          <input type="text" name="noteContent"><br />
+          <input type="submit">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

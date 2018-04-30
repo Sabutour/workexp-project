@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>HOME PAGE</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+
+<div class="main_container">
+
+  <div class="events_menu">
+
+    <h1 class="title">Calendar Events</h1>
+
+    {% for form in eventForms %}
+
+    <div class="form_box">
+
+      <p><strong>Event: {{form.eventName}} </strong></p>
+      <p><strong>Date:</strong> {{form.eventDate}} </p>
+      <p><strong>Location:</strong> {{form.eventLocation}} </p>
+      <p><strong>Details:</strong> {{form.eventDetails}} </p>
+
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+  <div class="notes_menu">
+    <h1 class="title">Notes</h1>
+
+    {% for form in noteForms %}
+
+    <div class="note_box">
+
+      <p><strong>Title: {{form.noteName}} </strong></p>
+      <p><strong>Content:</strong> {{form.noteContent}} </p>
+
+    </div>
+
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<br>
+
+<a href="/form">Go To Form</a>
+
+<a href="/note">Go To Note</a>
+
+  </body>
+</html>
