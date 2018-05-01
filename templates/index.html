@@ -22,11 +22,11 @@
 
 <div class="popup_nav">
   <a href="#event_popup">
-    <img src="/static/images/plus-icon.png" class="icon" />
+    <img src="/static/images/event-icon.png" class="icon" />
   </a>
 
   <a href="#note_popup">
-    <img src="static/images/"
+    <img src="static/images/note-icon.png" class="icon" />
   </a>
 
 </div>
@@ -37,17 +37,32 @@
 
   <div class="event_menu_popup">
 
+    <div class="event_popup_header">
+      <a class="close" href="#bottom">x</a>
+    </div>
+
     <h2>Enter Event Details:</h2>
-    <a class="close" href="#close_popup">x</a>
     <br />
     <div id="main">
       <form method="post" action="{{ url_for('submitted_form') }}">
         <label for="eventName">Name:</label>
-        <input type="text" name="eventName"><br />
+        <input type="text" name="eventName">
+
+        <br />
+        <br />
+
         <label for="eventDate">Date:</label>
-        <input type="date" name="eventDate"><br />
+        <input type="date" name="eventDate">
+
+        <br />
+        <br />
+
         <label for="eventLocation">Location:</label>
-        <input type="text" name="eventLocation"><br />
+        <input type="text" name="eventLocation">
+
+        <br />
+        <br />
+
         <label for="eventDetails">Details:</label>
         <textarea rows="5" name="eventDetails"></textarea><br />
         <input type="submit">
@@ -62,15 +77,26 @@
 
   <div class="event_menu_popup">
 
+    <div class="note_popup_header">
+      <a class="close" href="#bottom">x</a>
+    </div>
+
     <h2>Enter Note Details:</h2>
-    <a class="close" href="#bottom">x</a>
     <br />
     <div id="main">
       <form method="post" action="{{ url_for('submitted_note') }}">
         <label for="noteName">Title:</label>
-        <input type="text" name="noteName"><br />
+        <input type="text" name="noteName">
+
+        <br />
+        <br />
+
         <label for="noteContent">Content:</label>
-        <textarea rows="10" name="noteContent"></textarea><br />
+        <textarea rows="10" min-width="80%" name="noteContent"></textarea>
+
+        <br />
+        <br />
+
         <input type="submit">
       </form>
     </div>
@@ -114,10 +140,6 @@
   </div>
 
 </div>
-
-<br>
-
-<a href="#note_popup">Go To Note</a>
 
   </body>
 </html>
