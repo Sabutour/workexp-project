@@ -96,35 +96,34 @@
 
     <h1 class="title">Calendar Events</h1>
 
-    {% for form in eventForms %}
-
     <div class="form_box" id="form_box">
 
-      <p><strong>Event: {{form.eventName}} </strong></p>
-      <p><strong>Date:</strong> {{form.eventDate}} </p>
-      <p><strong>Location:</strong> {{form.eventLocation}} </p>
-      <p><strong>Details:</strong> {{form.eventDetails}} </p>
+<iframe src="https://calendar.google.com/calendar/embed?mode=AGENDA&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=jmacthetaii%40gmail.com&amp;color=%231B887A&amp;ctz=Australia%2FSydney" style="border-width:0" width="100%" height="85%" frameborder="0" scrolling="no"></iframe>
 
     </div>
 
-    {% endfor %}
 
   </div>
 
-  <div class="notes_menu">
+  <div class="center_column">
+    <div class="notes_menu">
 
-    {% for form in noteForms %}
+      {% for form in noteForms %}
 
-    <div class="note_box" id="draggable">
+      <div class="note_box" id="draggable">
 
-      <p><strong>Title: {{form.noteName}} </strong></p>
-      <p><strong>Content:</strong> {{form.noteContent}} </p>
+        <p><strong>Title: {{form.noteName}} </strong></p>
+        <p><strong>Content:</strong> {{form.noteContent}} </p>
+
+      </div>
+
+      {% endfor %}
 
     </div>
-
-    {% endfor %}
-
+    
   </div>
+
+
 
 </div>
 
