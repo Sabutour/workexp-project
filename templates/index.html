@@ -2,8 +2,34 @@
   <head>
     <title>HOME PAGE</title>
    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+   <script src="https://code.jquery.com/juery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   <script>
+
+      $(document).ready(function() {
+        $( function() {
+          $( '#draggable' ).draggable();
+        } );
+      });
+
+   </script>
+
   </head>
+
   <body>
+
+<div class="popup_nav">
+  <a href="#event_popup">
+    <img src="/static/images/plus-icon.png" class="icon" />
+  </a>
+
+  <a href="#note_popup">
+    <img src="static/images/"
+  </a>
+
+</div>
 
 <div class="main_container">
 
@@ -12,7 +38,7 @@
   <div class="event_menu_popup">
 
     <h2>Enter Event Details:</h2>
-    <a class="close" href="#bottom">x</a>
+    <a class="close" href="#close_popup">x</a>
     <br />
     <div id="main">
       <form method="post" action="{{ url_for('submitted_form') }}">
@@ -72,12 +98,11 @@
 
   </div>
 
-  <div class="notes_menu" id="note_box">
-    <h1 class="title">Notes</h1>
+  <div class="notes_menu">
 
     {% for form in noteForms %}
 
-    <div class="note_box">
+    <div class="note_box" id="draggable">
 
       <p><strong>Title: {{form.noteName}} </strong></p>
       <p><strong>Content:</strong> {{form.noteContent}} </p>
@@ -91,8 +116,6 @@
 </div>
 
 <br>
-
-<a href="#event_popup">Go To Form</a>
 
 <a href="#note_popup">Go To Note</a>
 

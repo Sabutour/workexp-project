@@ -8,9 +8,10 @@
 }
 
 .form_box {
+  align: center;
   display: inline-block;
   outline: 1px solid black;
-  width: 380px;
+  width: 90%;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
@@ -21,38 +22,39 @@
 
 .events_menu {
   outline: 3px solid black;
-  background-color: b3e0FF;
-  min-height: 900px;
-  max-height: 900px;
+  background-color: #6dcdee;
+  min-height: 90vh;
+  max-height: 90vh;
   overflow: scroll;
   height: auto;
-  width: 420px;
+  width: 35vw;
   margin-left: 10px;
   margin-right: 10px;
-  display: inline-grid;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 .notes_menu {
+  display: inline-flex;
+  flex-wrap: wrap;
   outline: 3px solid black;
-  background-color: #ffff80;
-  display: inline-grid;
-  min-height: 900px;
-  max-height: 900px;
-  height: auto;
-  width: 1000px;
-  max-width: 1000px;
+  background-color: #fae50e;
+  min-height: 90vh;
+  max-height: 90vh;
+  min-width: 60vw;
+  max-width: 60vw;
   margin-left: 10px;
   margin-right: 10px;
   overflow: scroll;
 }
 
 .main_container {
+
 }
 
 .note_box {
-  display: grid;
   outline: 1px solid black;
-  width: 400px;
+  width: 25%;
   height: auto;
   padding: 20px;
   margin-top: 10px;
@@ -62,6 +64,7 @@
   background-color: white;
   text-overflow: clip;
   overflow: hidden;
+  cursor: move;
 }
 
 .screen_overlay {
@@ -103,4 +106,24 @@
   font-weight: bold;
   text-decoration: none;
   color: black:
+}
+
+.popup_nav {
+  position: fixed;
+  bottom: 10px;
+  left: 95%;
+  width: 100px;
+  height: 200px;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.icon {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80px;
+  width: 80px;
+  z-index: 100;
 }
