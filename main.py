@@ -65,7 +65,7 @@ def note():
 # [END note]
 
 # [START submitted]
-@app.route('/submitted', methods=['POST'])
+@app.route('/submitted_form', methods=['POST'])
 def submitted_form():
     eventName = request.form['eventName']
     eventDate = request.form['eventDate']
@@ -75,6 +75,7 @@ def submitted_form():
     form = EventForm(eventName = eventName, eventDate = eventDate, eventLocation = eventLocation, eventDetails = eventDetails)
     form.put()
     # [END submitted]
+
     # [START render_template]
     return render_template(
         'submitted_form.html',
@@ -93,6 +94,7 @@ def submitted_note():
     form = NoteForm(noteName = noteName, noteContent = noteContent)
     form.put()
     # [END submitted]
+
     # [START render_template]
     return render_template(
         'submitted_note.html',

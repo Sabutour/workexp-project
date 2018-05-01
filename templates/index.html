@@ -2,28 +2,101 @@
   <head>
     <title>HOME PAGE</title>
    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+   <script src="https://code.jquery.com/juery-1.12.4.js"></script>
+   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+   <script>
+
+      $(document).ready(function() {
+        $( function() {
+          $( '#draggable' ).draggable();
+        } );
+      });
+
+   </script>
+
   </head>
+
   <body>
+
+<div class="popup_nav">
+  <a href="#event_popup">
+    <img src="/static/images/event-icon.png" class="icon" />
+  </a>
+
+  <a href="#note_popup">
+    <img src="static/images/note-icon.png" class="icon" />
+  </a>
+
+</div>
 
 <div class="main_container">
 
-<div id="popup" class="screen_overlay">
+<div id="event_popup" class="screen_overlay">
 
   <div class="event_menu_popup">
 
-    <h2>Test Please Ignore</h2>
-    <a class="close" href="#bottom">x</a>
+    <div class="event_popup_header">
+      <a class="close" href="#bottom">x</a>
+    </div>
+
+    <h2>Enter Event Details:</h2>
     <br />
     <div id="main">
       <form method="post" action="{{ url_for('submitted_form') }}">
         <label for="eventName">Name:</label>
-        <input type="text" name="eventName"><br />
+        <input type="text" name="eventName">
+
+        <br />
+        <br />
+
         <label for="eventDate">Date:</label>
-        <input type="date" name="eventDate"><br />
+        <input type="date" name="eventDate">
+
+        <br />
+        <br />
+
         <label for="eventLocation">Location:</label>
-        <input type="text" name="eventLocation"><br />
+        <input type="text" name="eventLocation">
+
+        <br />
+        <br />
+
         <label for="eventDetails">Details:</label>
-        <textarea name="eventDetails"></textarea><br />
+        <textarea rows="5" name="eventDetails"></textarea><br />
+        <input type="submit">
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<div id="note_popup" class="screen_overlay">
+
+  <div class="event_menu_popup">
+
+    <div class="note_popup_header">
+      <a class="close" href="#bottom">x</a>
+    </div>
+
+    <h2>Enter Note Details:</h2>
+    <br />
+    <div id="main">
+      <form method="post" action="{{ url_for('submitted_note') }}">
+        <label for="noteName">Title:</label>
+        <input type="text" name="noteName">
+
+        <br />
+        <br />
+
+        <label for="noteContent">Content:</label>
+        <textarea rows="10" min-width="80%" name="noteContent"></textarea>
+
+        <br />
+        <br />
+
         <input type="submit">
       </form>
     </div>
@@ -38,7 +111,7 @@
 
     {% for form in eventForms %}
 
-    <div class="form_box">
+    <div class="form_box" id="form_box">
 
       <p><strong>Event: {{form.eventName}} </strong></p>
       <p><strong>Date:</strong> {{form.eventDate}} </p>
@@ -52,11 +125,10 @@
   </div>
 
   <div class="notes_menu">
-    <h1 class="title">Notes</h1>
 
     {% for form in noteForms %}
 
-    <div class="note_box">
+    <div class="note_box" id="draggable">
 
       <p><strong>Title: {{form.noteName}} </strong></p>
       <p><strong>Content:</strong> {{form.noteContent}} </p>
@@ -68,12 +140,6 @@
   </div>
 
 </div>
-
-<br>
-
-<a href="#popup">Go To Form</a>
-
-<a href="/note">Go To Note</a>
 
   </body>
 </html>
