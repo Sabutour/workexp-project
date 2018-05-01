@@ -7,11 +7,11 @@
 
 <div class="main_container">
 
-<div id="popup" class="screen_overlay">
+<div id="event_popup" class="screen_overlay">
 
   <div class="event_menu_popup">
 
-    <h2>Test Please Ignore</h2>
+    <h2>Enter Event Details:</h2>
     <a class="close" href="#bottom">x</a>
     <br />
     <div id="main">
@@ -23,7 +23,28 @@
         <label for="eventLocation">Location:</label>
         <input type="text" name="eventLocation"><br />
         <label for="eventDetails">Details:</label>
-        <textarea name="eventDetails"></textarea><br />
+        <textarea rows="5" name="eventDetails"></textarea><br />
+        <input type="submit">
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<div id="note_popup" class="screen_overlay">
+
+  <div class="event_menu_popup">
+
+    <h2>Enter Note Details:</h2>
+    <a class="close" href="#bottom">x</a>
+    <br />
+    <div id="main">
+      <form method="post" action="{{ url_for('submitted_note') }}">
+        <label for="noteName">Title:</label>
+        <input type="text" name="noteName"><br />
+        <label for="noteContent">Content:</label>
+        <textarea rows="10" name="noteContent"></textarea><br />
         <input type="submit">
       </form>
     </div>
@@ -38,7 +59,7 @@
 
     {% for form in eventForms %}
 
-    <div class="form_box">
+    <div class="form_box" id="form_box">
 
       <p><strong>Event: {{form.eventName}} </strong></p>
       <p><strong>Date:</strong> {{form.eventDate}} </p>
@@ -51,7 +72,7 @@
 
   </div>
 
-  <div class="notes_menu">
+  <div class="notes_menu" id="note_box">
     <h1 class="title">Notes</h1>
 
     {% for form in noteForms %}
@@ -71,9 +92,9 @@
 
 <br>
 
-<a href="#popup">Go To Form</a>
+<a href="#event_popup">Go To Form</a>
 
-<a href="/note">Go To Note</a>
+<a href="#note_popup">Go To Note</a>
 
   </body>
 </html>
