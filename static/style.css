@@ -73,6 +73,20 @@ html, body {
   max-width: 40vw;
 }
 
+.transbox {
+  margin: 30px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px black;
+  width:38vw;
+  height:13vh;
+  padding-left:20px;
+  box-shadow: 2px 2px 15px 2px #616161;
+  font-family: "Arial", sans-serif;
+  font-size: 400%;
+  text-align: center;
+
+}
+
 .main_container {
   background-image: url("/static/images/background.jpeg");
   background-size: 110%;
