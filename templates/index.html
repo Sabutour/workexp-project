@@ -37,13 +37,13 @@
 <div class="main_container">
 
   <p>
-    {{user}}
+    {{user_email}}
   </p>
-
-  <br />
-
   <p>
-    {{user_id}}
+    {{user_email}}
+  </p>
+  <p>
+    {{user_id_number}}
   </p>
 
 <div id="event_popup" class="screen_overlay">
@@ -58,6 +58,7 @@
     <br />
     <div id="main">
       <form method="post" action="{{ url_for('submitted_form') }}">
+
         <label for="eventName">Name:</label>
         <input type="text" name="eventName">
 
@@ -78,6 +79,10 @@
 
         <label for="eventDetails">Details:</label>
         <textarea rows="5" name="eventDetails"></textarea><br />
+
+        <input type="hidden" name="user_email" value="{{user_email}}">
+        <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
+
         <input type="submit">
       </form>
     </div>
@@ -101,6 +106,10 @@
         <label for="noteName">Title:</label>
         <input type="text" name="noteName">
 
+        <p>
+          {{user_id_number}}
+        </p>
+
         <br />
         <br />
 
@@ -109,6 +118,9 @@
 
         <br />
         <br />
+
+        <input type="hidden" name="user_email" value="{{user_email}}">
+        <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
 
         <input type="submit">
       </form>

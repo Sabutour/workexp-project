@@ -20,22 +20,25 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import datastore
 
-# User Account Info Storing
-user = users.get_current_user()
-
 # class Account(ndb.Model):
 #     user_id = ndb.StringProperty()
 #     username = ndb.StringProperty()
 
+user = users.get_current_user()
+user_email = user.email()
+user_id_number = user.user_id()
+
 class EventForm(ndb.Model):
-    user_id = ndb.StringProperty()
+    user_email = ndb.GenericProperty()
+    user_id_number = ndb.GenericProperty()
     eventName = ndb.StringProperty()
     eventDate = ndb.StringProperty()
     eventLocation = ndb.StringProperty()
     eventDetails = ndb.StringProperty()
 
 class NoteForm(ndb.Model):
-    user_id = ndb.StringProperty()
+    user_email = ndb.GenericProperty()
+    user_id_number = ndb.GenericProperty()
     noteName = ndb.StringProperty()
     noteContent = ndb.StringProperty()
 
@@ -55,10 +58,12 @@ app = Flask(__name__)
 def index():
     # check if ModelWithUser exists with query
     # if not, create new user user = ModelWithUser(user_id = user.user_id)
-
+    user = users.get_current_user()
+    user_email = user.email()
+    user_id_number = user.user_id()
     eventForms = EventForm.query()
     noteForms = NoteForm.query()
-    return render_template('index.html', eventForms = eventForms, noteForms = noteForms, user = user)
+    return render_template('index.html', eventForms = eventForms, noteForms = noteForms, user_email = user_email, user_id_number = user_id_number)
 # [END index]
 
 # [START form]
@@ -76,18 +81,22 @@ def note():
 # [START submitted]
 @app.route('/submitted_form', methods=['POST'])
 def submitted_form():
+    user_email = request.form['user_email']
+    user_id_number = request.form['user_id_number']
     eventName = request.form['eventName']
     eventDate = request.form['eventDate']
     eventLocation = request.form['eventLocation']
     eventDetails = request.form['eventDetails']
 
-    form = EventForm(eventName = eventName, eventDate = eventDate, eventLocation = eventLocation, eventDetails = eventDetails)
+    form = EventForm(user_email = user_email, user_id_number = user_id_number, eventName = eventName, eventDate = eventDate, eventLocation = eventLocation, eventDetails = eventDetails)
     form.put()
     # [END submitted]
 
     # [START render_template]
     return render_template(
         'submitted_form.html',
+        user_email=user_email,
+        user_id_number=user_id_number,
         eventName=eventName,
         eventDate=eventDate,
         eventLocation=eventLocation,
@@ -97,16 +106,20 @@ def submitted_form():
 # [START submitted]
 @app.route('/submitted_note', methods=['POST'])
 def submitted_note():
+    user_email = request.form['user_email']
+    user_id_number = request.form['user_id_number']
     noteName = request.form['noteName']
     noteContent = request.form['noteContent']
 
-    form = NoteForm(noteName = noteName, noteContent = noteContent)
+    form = NoteForm(user_email = user_email, user_id_number = user_id_number, noteName = noteName, noteContent = noteContent)
     form.put()
     # [END submitted]
 
     # [START render_template]
     return render_template(
         'submitted_note.html',
+        user_email=user_email,
+        user_id_number=user_id_number,
         noteName=noteName,
         noteContent=noteContent)
     # [END render_template]
