@@ -1,14 +1,27 @@
 <html>
-  <head>
-    <title>Submit a form</title>
+ <head>
+   <title>Submitted form</title>
    <link rel="stylesheet" type="text/css" href="/static/style.css">
-  </head>
-  <body>
-    <div id="container">
-      <div class="pagetitle">
-        <h1>Submit a note</h1>
-      </div>
 
-    </div>
-  </body>
+   <meta http-equiv="refresh" content="0.5; URL=/" />
+
+ </head>
+ <body>
+   <div id="container" class="submitted_container">
+     <div class="pagetitle">
+       <h1>Form submitted</h1>
+     </div>
+     <div id="main">
+       <p>Submission recorded.</p>
+       <p>Here's a review of the information that you sent:</p>
+       <p>
+          <strong>Name</strong>: {{user_email}} <br>
+          <strong>Date</strong>: {{user_id_number}} <br>
+       </p>
+
+       <a href="/">Go Home</a>
+
+     </div>
+   </div>
+ </body>
 </html>

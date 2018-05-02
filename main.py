@@ -20,13 +20,13 @@ from google.appengine.api import users
 from google.appengine.ext import ndb
 from google.appengine.api import datastore
 
-# class Account(ndb.Model):
-#     user_id = ndb.StringProperty()
-#     username = ndb.StringProperty()
-
 user = users.get_current_user()
 user_email = user.email()
 user_id_number = user.user_id()
+
+class Account(ndb.Model):
+    user_email = ndb.GenericProperty()
+    user_id_number = ndb.GenericProperty()
 
 class EventForm(ndb.Model):
     user_email = ndb.GenericProperty()
@@ -34,13 +34,13 @@ class EventForm(ndb.Model):
     eventName = ndb.StringProperty()
     eventDate = ndb.StringProperty()
     eventLocation = ndb.StringProperty()
-    eventDetails = ndb.StringProperty()
+    eventDetails = ndb.TextProperty()
 
 class NoteForm(ndb.Model):
     user_email = ndb.GenericProperty()
     user_id_number = ndb.GenericProperty()
     noteName = ndb.StringProperty()
-    noteContent = ndb.StringProperty()
+    noteContent = ndb.TextProperty()
 
 # [START app]
 import logging
@@ -56,8 +56,6 @@ app = Flask(__name__)
 # [START index]
 @app.route('/')
 def index():
-    # check if ModelWithUser exists with query
-    # if not, create new user user = ModelWithUser(user_id = user.user_id)
     user = users.get_current_user()
     user_email = user.email()
     user_id_number = user.user_id()
@@ -77,6 +75,19 @@ def form():
 def note():
     return render_template('note.html')
 # [END note]
+
+@app.route('/login', methods=['POST'])
+def login():
+    user_email = request.form['user_email']
+    user_id_number = request.form['user_id_number']
+
+    form = Account(user_email = user_email, user_id_number = user_id_number)
+    form.put()
+
+    return render_template(
+    'login.html',
+    user_email=user_email,
+    user_id_number=user_id_number)
 
 # [START submitted]
 @app.route('/submitted_form', methods=['POST'])

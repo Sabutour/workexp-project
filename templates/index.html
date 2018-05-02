@@ -2,26 +2,93 @@
   <head>
     <title>HOME PAGE</title>
    <link rel="stylesheet" type="text/css" href="/static/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
    <script>
-       function startTime() {
-         var today = new Date();
-         var h = today.getHours();
-         var m = today.getMinutes();
-         var s = today.getSeconds();
-         m = checkTime(m);
-         s = checkTime(s);
-         document.getElementById('txt').innerHTML =
-         h + ":" + m + ":" + s;
-         var t = setTimeout(startTime, 500);
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('txt').innerHTML = today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear() + "  " + "  " + h + ":" + m + ":" + s;
+      var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i}; //add zero in front of numbers < 10
+    return i;
+    }
+
+       function changeBackgroundPurple() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-pflower.jpg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#B648FD";
+         document.getElementById("note_popup_header").style.backgroundColor = "#B648FD";
        }
-       function checkTime(i) {
-         if (i < 10) {i = "0" + i};
-         return i;
+
+       function changeBackgroundBlue() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-tree.jpeg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#56a0d9";
+         document.getElementById("note_popup_header").style.backgroundColor = "#56a0d9";
        }
+
+       function changeBackgroundRed() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-rflower.jpeg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#BB0303";
+         document.getElementById("note_popup_header").style.backgroundColor = "#BB0303";
+       }
+
+       function changeBackgroundYellow() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-yflower.jpg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#FABB02";
+         document.getElementById("note_popup_header").style.backgroundColor = "#FABB02";
+       }
+
+       function changeBackgroundOrange() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-web.jpg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#FF8300";
+         document.getElementById("note_popup_header").style.backgroundColor = "#FF8300";
+       }
+
+       function changeBackgroundGreen() {
+         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-grass.jpg')";
+         document.getElementById("event_popup_header").style.backgroundColor = "#33AC20";
+         document.getElementById("note_popup_header").style.backgroundColor = "#33AC20";
+       }
+
+       function submitform()
+       {
+         var submitted = 0;
+         if (submitted = 0) {
+           document.getElementById("user_id_number_form").submit();
+           var submitted = 1;
+           alert("Hi");
+         }
+       }
+
    </script>
   </head>
 
-  <body onload="startTime()">
+  <body onload="startTime(); submitform()">
+
+    <div id="preloader">
+	     <img src="/static/images/background-pflower" width="1" height="1" />
+	     <img src="/static/images/background-rflower" width="1" height="1" />
+	     <img src="/static/images/background-yflower" width="1" height="1" />
+	     <img src="/static/images/background-tree" width="1" height="1" />
+	     <img src="/static/images/background-web" width="1" height="1" />
+	     <img src="/static/images/background-grass" width="1" height="1" />
+     </div>
+
+     <div>
+       <form method="post" id="user_id_number_form" name="user_id_number_form" action="{{ url_for('login') }}" class="hidden_user_id_form">
+
+         <input type="hidden" name="user_email" value="{{user_email}}">
+         <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
+         <input type="submit" value="Submit" />
+
+       </form>
+     </div>
 
 <div class="popup_nav">
   <a href="#event_popup">
@@ -32,25 +99,24 @@
     <img src="static/images/note-icon.png" class="icon" />
   </a>
 
+  <div>
+    <button onclick="changeBackgroundPurple()" class="color_selection_icon" style="background-color: #B648FD"></button>
+    <button onclick="changeBackgroundBlue()" class="color_selection_icon" style="background-color: #56a0d9"></button>
+    <button onclick="changeBackgroundRed()" class="color_selection_icon" style="background-color: #BB0303"></button>
+    <button onclick="changeBackgroundYellow()" class="color_selection_icon" style="background-color: #FABB02"></button>
+    <button onclick="changeBackgroundOrange()" class="color_selection_icon" style="background-color: #FF8300"></button>
+    <button onclick="changeBackgroundGreen()" class="color_selection_icon" style="background-color: #33AC20"></button>
+
+  </div>
 </div>
 
-<div class="main_container">
-
-  <p>
-    {{user_email}}
-  </p>
-  <p>
-    {{user_email}}
-  </p>
-  <p>
-    {{user_id_number}}
-  </p>
+<div class="main_container" id="main_container">
 
 <div id="event_popup" class="screen_overlay">
 
   <div class="event_menu_popup">
 
-    <div class="event_popup_header">
+    <div class="event_popup_header" id="event_popup_header">
       <a class="close" href="#bottom">x</a>
     </div>
 
@@ -95,7 +161,7 @@
 
   <div class="event_menu_popup">
 
-    <div class="note_popup_header">
+    <div class="note_popup_header" id="note_popup_header">
       <a class="close" href="#bottom">x</a>
     </div>
 
@@ -105,10 +171,6 @@
       <form method="post" action="{{ url_for('submitted_note') }}">
         <label for="noteName">Title:</label>
         <input type="text" name="noteName">
-
-        <p>
-          {{user_id_number}}
-        </p>
 
         <br />
         <br />
@@ -151,9 +213,10 @@
 
   <div class="center_column">
     <div class="transbox" >
-
-      <div id='txt' style="padding-top:1.5vh">
-      </div>
+      <div id="txt"></div>
+          <p id="day"></p> <p id="month"></p>
+    <p id="year"></p>
+      <div id="date"></div>
     </div>
 
     <div class="notes_menu">

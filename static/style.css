@@ -17,7 +17,7 @@ html, body {
 
 .title {
   margin-left: 20px;
-  font-family: "Arial", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .form_box {
@@ -32,7 +32,7 @@ html, body {
   margin-bottom: 10px;
   background-color: white;
   padding: 10px;
-  font-family: "Arial", sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .events_menu {
@@ -78,23 +78,25 @@ html, body {
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px black;
+  padding-top: 1vh;
   width:40vw;
   height:10vh;
   box-shadow: 2px 2px 15px 2px #616161;
-  font-family: "Arial", sans-serif;
-  font-size: 4em;
+  font-family: 'Lato', sans-serif;
+  font-size: 3em;
   text-align: center;
 
 }
 
 .main_container {
-  background-image: url("/static/images/background.jpeg");
+  background-image: url("/static/images/background-tree.jpeg");
   background-size: 110%;
+  transition: all 2s;
 }
 
 .note_box {
   box-shadow: 2px 2px 15px 2px #616161;
-  font-family: "Arial", sans-serif;
+  font-family: 'Lato', sans-serif;
   outline: 1px solid black;
   width: 25%;
   height: auto;
@@ -136,7 +138,7 @@ html, body {
   border-radius: 5px;
   position: relative;
   background-color: white;
-  font-family: "Arial", sans-serif;
+  font-family: 'Lato', sans-serif;
   overflow: hidden;
 }
 
@@ -198,3 +200,43 @@ html, body {
   transition: 200ms;
   opacity: 0.8;
 }
+
+.color_selection_icon {
+  font-family:Arial;
+  font-size:150%;
+  width: 2vw;
+  height: 2vw;
+  margin: 0.2vw;
+  padding: 10px;
+  box-shadow: 1px 5px 10px #A9A9A9;
+  cursor: pointer;
+}
+
+.color_selection_icon:hover {
+  transition: 200ms;
+  opacity: 0.8;
+}
+
+@media screen {
+	div#preloader {
+		position: absolute;
+		left: -9999px;
+		top:  -9999px;
+		}
+	div#preloader img {
+		display: block;
+		}
+	}
+
+@media print {
+	div#preloader,
+	div#preloader img {
+		visibility: hidden;
+		display: none;
+		}
+	}
+
+  .hidden_user_id_form {
+    /* visibility: hidden;
+    display: none; */
+  }
