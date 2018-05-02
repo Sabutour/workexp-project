@@ -1,3 +1,8 @@
+/*This is the external style sheet for the website. (Almost) all of the the CSS for the site can be found and modified here, for ease of use. It is arranged into catagories based on function.*/
+
+/*----------GENERAL----------*/
+
+/*This piece of CSS makes items stretch all the way to the edges of the screen, unless stated otherwise elsewhere.*/
 html, body {
   overflow: hidden;
   margin: 0;
@@ -5,21 +10,82 @@ html, body {
   height: 110vh;
 }
 
+/*----------NAVIGATION----------*/
 
-.pagetitle {
-    color: #0000FF;
-    font-size: 30;
+/*This is the styling information for navigation side bar on the right side of the site.*/
+.popup_nav {
+  background-color: #F0F3F4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 105px;
+  height: 100vh;
+  padding-left: 10px;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: -5px -1px 25px 3px #616161;
 }
 
-.p {
-  font-family: "Arial", sans-serif;
+/*This is the styling information for the main icons on the navigation side bar.*/
+.icon {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100px;
+  z-index: 100;
 }
 
-.title {
-  margin-left: 20px;
-  font-family: 'Lato', sans-serif;
+/*This is the styling information for the main icons on the navigation side bar when the mouse hovers over them.*/
+.icon:hover {
+  transition: 200ms;
+  opacity: 0.8;
 }
 
+/*This is the styling information for the icons for the buttons that change the background.*/
+.color_selection_icon {
+  font-family:Arial;
+  font-size:150%;
+  width: 2vw;
+  height: 2vw;
+  margin: 0.2vw;
+  padding: 10px;
+  box-shadow: 1px 5px 10px #A9A9A9;
+  cursor: pointer;
+}
+
+/*This is the styling information for the icons for the buttons that change the background when the mouse hovers over them.*/
+.color_selection_icon:hover {
+  transition: 200ms;
+  opacity: 0.8;
+}
+
+/*----------CONTAINERS----------*/
+
+/*This is the styling information for main container of the page.*/
+.main_container {
+  background-image: url("/static/images/background-tree.jpeg");
+  background-size: 110%;
+  transition: all 2s;
+}
+
+/*This is the styling information for menu that contains the calendar event divs.*/
+.events_menu {
+  padding-top: 10px;
+  box-shadow: 2px 2px 15px 2px #616161;
+  /* background-color: #6dcdee; */
+  background-color: rgba(255, 255, 255, 0.8);
+  min-height: 97vh;
+  max-height: 97vh;
+  overflow: scroll;
+  width: 35vw;
+  margin: 10px;
+  display: inline-block;
+  flex-direction: column;
+}
+
+/*This is the styling information for the calendar event divs.*/
 .form_box {
   box-shadow: 2px 2px 15px 2px #616161;
   align: center;
@@ -35,20 +101,32 @@ html, body {
   font-family: 'Lato', sans-serif;
 }
 
-.events_menu {
-  padding-top: 10px;
-  box-shadow: 2px 2px 15px 2px #616161;
-  /* background-color: #6dcdee; */
-  background-color: rgba(255, 255, 255, 0.8);
-  min-height: 97vh;
-  max-height: 97vh;
-  overflow: scroll;
-  width: 35vw;
-  margin: 10px;
+/*This is the styling information for the column in the center of the page that contains the notes menu and the clock div.*/
+.center_column {
   display: inline-block;
-  flex-direction: column;
+  min-height: 80vh;
+  max-height: 80vh;
+  min-width: 40vw;
+  max-width: 40vw;
 }
 
+/*This is the styling information for the div that contains the clock div.*/
+.transbox {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px black;
+  padding-top: 1vh;
+  width:40vw;
+  height:10vh;
+  box-shadow: 2px 2px 15px 2px #616161;
+  font-family: 'Lato', sans-serif;
+  font-size: 3em;
+  text-align: center;
+
+}
+
+/*This is the styling information for the menu that contains the note divs.*/
 .notes_menu {
   box-shadow: 2px 2px 15px 2px #616161;
   flex-direction: row;
@@ -65,35 +143,7 @@ html, body {
 
 }
 
-.center_column {
-  display: inline-block;
-  min-height: 80vh;
-  max-height: 80vh;
-  min-width: 40vw;
-  max-width: 40vw;
-}
-
-.transbox {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 3px black;
-  padding-top: 1vh;
-  width:40vw;
-  height:10vh;
-  box-shadow: 2px 2px 15px 2px #616161;
-  font-family: 'Lato', sans-serif;
-  font-size: 3em;
-  text-align: center;
-
-}
-
-.main_container {
-  background-image: url("/static/images/background-tree.jpeg");
-  background-size: 110%;
-  transition: all 2s;
-}
-
+/*This is the styling information for the note divs.*/
 .note_box {
   box-shadow: 2px 2px 15px 2px #616161;
   font-family: 'Lato', sans-serif;
@@ -110,6 +160,68 @@ html, body {
   display: inline-grid;
 }
 
+/*This is the styling information for the div on the 'submitted_note', 'submitted_form' and 'login' pages. It is hidden as the page auto-redirects.*/
+.submitted_container {
+  visibility: hidden;
+}
+
+/*----------POPUPS----------*/
+
+/*This is the styling information for popup menu for adding a new event to the calendar menu.*/
+.event_menu_popup {
+  width: 650px;
+  height: auto;
+  margin: 70px auto;
+  padding: 20px;
+  background: #000000;
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
+}
+
+/*This is the styling information for button that closes the event menu popup.*/
+.event_menu_popup .close {
+  position: absolute;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  color: black:
+}
+
+/*This is the styling information for the coloured header at the top of the event and notes menu popups.*/
+.popup_header {
+  width: 120%;
+  margin-left: -20px;
+  margin-top: -20px;
+  height: 4%;
+  background-color: #56a0d9;
+}
+
+
+/*----------TEXT----------*/
+
+/*This is the styling information for the text, site-wide.*/
+.p {
+  font-family: 'Lato', sans-serif;
+}
+
+/*This is the styling information for title in the calendar events menu.*/
+.title {
+  margin-left: 20px;
+  font-family: 'Lato', sans-serif;
+}
+
+/*----------IMAGES----------*/
+
+
+/*----------OTHER----------*/
+
+/*This is the styling information for darkening screen overlay that covers the screen when a popup is opened.*/
 .screen_overlay {
   position: fixed;
   top: 0;
@@ -124,118 +236,13 @@ html, body {
   opacity: 0;
 }
 
+/*This is the styling information that allows the screen overlay to be opened and closed.*/
 .screen_overlay:target {
   visibility: visible;
   opacity: 1;
 }
 
-.event_menu_popup {
-  width: 650px;
-  height: auto;
-  margin: 70px auto;
-  padding: 20px;
-  background: #000000;
-  border-radius: 5px;
-  position: relative;
-  background-color: white;
-  font-family: 'Lato', sans-serif;
-  overflow: hidden;
-}
-
-.event_menu_popup .close {
-  position: absolute;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 2em;
-  font-family: "Arial", sans-serif;
-  font-weight: bold;
-  text-decoration: none;
-  color: black:
-}
-
-.submitted_container {
-  visibility: hidden;
-}
-
-.popup_nav {
-  background-color: #F0F3F4;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 105px;
-  height: 100vh;
-  padding-left: 10px;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: -5px -1px 25px 3px #616161;
-}
-
-.icon {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100px;
-  width: 100px;
-  z-index: 100;
-}
-
-.event_popup_header {
-  width: 120%;
-  margin-left: -20px;
-  margin-top: -20px;
-  height: 4%;
-  background-color: #56a0d9;
-}
-
-.note_popup_header {
-  width: 120%;
-  margin-left: -20px;
-  margin-top: -20px;
-  height: 4%;
-  background-color: #56a0d9;
-}
-
-.icon:hover {
-  transition: 200ms;
-  opacity: 0.8;
-}
-
-.color_selection_icon {
-  font-family:Arial;
-  font-size:150%;
-  width: 2vw;
-  height: 2vw;
-  margin: 0.2vw;
-  padding: 10px;
-  box-shadow: 1px 5px 10px #A9A9A9;
-  cursor: pointer;
-}
-
-.color_selection_icon:hover {
-  transition: 200ms;
-  opacity: 0.8;
-}
-
-@media screen {
-	div#preloader {
-		position: absolute;
-		left: -9999px;
-		top:  -9999px;
-		}
-	div#preloader img {
-		display: block;
-		}
-	}
-
-@media print {
-	div#preloader,
-	div#preloader img {
-		visibility: hidden;
-		display: none;
-		}
-	}
-
+/*This is the styling information for hidden, automated form to log the user's id.*/
   .hidden_user_id_form {
     /* visibility: hidden;
     display: none; */
