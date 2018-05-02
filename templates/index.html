@@ -39,6 +39,29 @@
         <input type="submit" value="Submit" />
       </form>
     </div>
+    
+    <!--This experimental div preloads the background images.-->
+    <div class="hidden_user_id_form">
+      <script type="text/javascript">
+        <!--//--><![CDATA[//><!--
+          var images = new Array()
+          function preload() {
+            for (i = 0; i < preload.arguments.length; i++) {
+              images[i] = new Image()
+              images[i].src = preload.arguments[i]
+            }
+          }
+          preload(
+            "/static/images/background-rflower.jpeg",
+            "/static/images/background-tree.jpeg",
+            "/static/images/background-grass.jpg",
+            "/static/images/background-yflower.jpg",
+            "/static/images/background-pflower.jpg",
+            "/static/images/background-web.jpg"
+          )
+        //--><!]]>
+      </script>
+    </div>
   
     <!--This div is for the main naviagation sidebar.-->
     <div class="popup_nav">
