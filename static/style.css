@@ -25,7 +25,7 @@ html, body {
   align: center;
   display: inline-block;
   outline: 1px solid black;
-  width: 90%;
+  width: 31.8vw;
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 10px;
@@ -51,18 +51,18 @@ html, body {
 
 .notes_menu {
   box-shadow: 2px 2px 15px 2px #616161;
-  display: inline-block;
-  flex-wrap: wrap;
+  flex-direction: row;
   /* background-color: #fae50e; */
   background-color: rgba(255, 255, 255, 0.8);
-  min-height: 80vh;
-  max-height: 80vh;
+  min-height: 85vh;
+  max-height: 85vh;
   min-width: 40vw;
   max-width: 40vw;
   bottom: 0;
   margin: 10px;
   overflow: scroll;
   padding-bottom: 10px;
+
 }
 
 .center_column {
@@ -74,15 +74,15 @@ html, body {
 }
 
 .transbox {
-  margin: 30px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px black;
-  width:38vw;
-  height:13vh;
-  padding-left:20px;
+  width:40vw;
+  height:10vh;
   box-shadow: 2px 2px 15px 2px #616161;
   font-family: "Arial", sans-serif;
-  font-size: 400%;
+  font-size: 4em;
   text-align: center;
 
 }
@@ -98,7 +98,6 @@ html, body {
   outline: 1px solid black;
   width: 25%;
   height: auto;
-  max-height: 20vh;
   padding: 20px;
   margin-top: 10px;
   margin-left: 10px;
@@ -106,8 +105,7 @@ html, body {
   margin-bottom: 10px;
   background-color: #FFFFFF;
   text-overflow: clip;
-  overflow: hidden;
-  cursor: move;
+  display: inline-grid;
 }
 
 .screen_overlay {

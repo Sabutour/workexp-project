@@ -16,31 +16,26 @@ import cgi
 import textwrap
 import urllib
 
-from google.appengine.ext import ndb
 from google.appengine.api import users
+from google.appengine.ext import ndb
+from google.appengine.api import datastore
 
+# User Account Info Storing
 user = users.get_current_user()
-if user:
-    nickname = user.nickname()
-    logout_url = users.create_logout_url('/')
-    greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
-        nickname, logout_url)
-else:
-    login_url = users.create_login_url('/login')
-    greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
 # class Account(ndb.Model):
-#     """Account details."""
+#     user_id = ndb.StringProperty()
 #     username = ndb.StringProperty()
-#     userid = ndb.IntegerProperty()
 
 class EventForm(ndb.Model):
+    user_id = ndb.StringProperty()
     eventName = ndb.StringProperty()
     eventDate = ndb.StringProperty()
     eventLocation = ndb.StringProperty()
     eventDetails = ndb.StringProperty()
 
 class NoteForm(ndb.Model):
+    user_id = ndb.StringProperty()
     noteName = ndb.StringProperty()
     noteContent = ndb.StringProperty()
 
@@ -58,9 +53,12 @@ app = Flask(__name__)
 # [START index]
 @app.route('/')
 def index():
+    # check if ModelWithUser exists with query
+    # if not, create new user user = ModelWithUser(user_id = user.user_id)
+
     eventForms = EventForm.query()
     noteForms = NoteForm.query()
-    return render_template('index.html', eventForms = eventForms, noteForms = noteForms)
+    return render_template('index.html', eventForms = eventForms, noteForms = noteForms, user = user)
 # [END index]
 
 # [START form]
