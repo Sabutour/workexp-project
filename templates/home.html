@@ -136,31 +136,58 @@
           <a class="close" href="#"><img src="/static/images/close.png" style="height: 1vw; width:1vw;" /></a>
         </div>
 
-        <h2 style="text-align: center;">Enter Event Details:</h2>
+        <h2>Enter Event Details:</h2>
         <br />
         <div id="main">
           <form method="post" action="{{ url_for('submitted_form') }}">
 
-            <label for="eventName">Name:</label>
-            <input type="text" name="eventName" required>
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="eventName">Name:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <input type="text" name="eventName" required>
+              </div>
+            </div>
 
             <br />
             <br />
 
-            <label for="eventDate">Date:</label>
-            <input type="date" name="eventDate" required>
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="eventDate">Date:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <input type="date" name="eventDate" style="padding:2%; width:120%;" required>
+              </div>
+            </div>
 
             <br />
             <br />
 
-            <label for="eventLocation">Location:</label>
-            <input type="text" name="eventLocation">
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="eventLocation">Location:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <input type="text" name="eventLocation">
+              </div>
+            </div>
 
             <br />
             <br />
 
-            <label for="eventDetails">Details:</label>
-            <textarea rows="5" name="eventDetails"></textarea><br />
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="eventDetails">Details:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <textarea rows="5"name="eventDetails"></textarea>
+              </div>
+            </div>
+
+            <br />
+            <br />
 
             <input type="hidden" name="user_email" value="{{user_email}}">
             <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
@@ -182,18 +209,31 @@
           <a class="close" href="#"><img src="/static/images/close.png" style="height: 1vw; width:1vw;" /></a>
         </div>
 
-        <h2 style="text-align: center;">Enter Note Details:</h2>
+        <h2>Enter Note Details:</h2>
         <br />
         <div id="main">
+
           <form method="post" action="{{ url_for('submitted_note') }}">
-            <label for="noteName">Title:</label>
-            <input type="text" name="noteName" required>
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="noteName">Title:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <input type="text" name="noteName" required>
+              </div>
+            </div>
 
             <br />
             <br />
 
-            <label for="noteContent">Content:</label>
-            <textarea rows="10" min-width="80%" name="noteContent"></textarea>
+            <div>
+              <div style="display: inline-block; width: 20%;">
+                <label for="conteContent">Content:</label>
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <textarea rows="5"name="noteContent"></textarea>
+              </div>
+            </div>
 
             <br />
             <br />
@@ -339,7 +379,7 @@
 
             <form class="todo_enter_box" method="post" action="{{ url_for('submitted_todo') }}">
               <label for=todo_string></label>
-              <input type="text" name="todo_string" required>
+              <input type="text" name="todo_string" style="width:80%;"required>
               <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
 
               <input type="submit">
