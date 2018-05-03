@@ -18,12 +18,14 @@ html, body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 105px;
+  width: 3vw;
   height: 100vh;
   padding-left: 10px;
   align-items: center;
   overflow: hidden;
-  box-shadow: -5px -1px 25px 3px #616161;
+  box-shadow: -5px -10px 25px 3px #616161;
+  background-color: #56a0d9;
+  transition: all 1s;
 }
 
 /*This is the styling information for the main icons on the navigation side bar.*/
@@ -32,8 +34,8 @@ html, body {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 100px;
-  width: 100px;
+  height: 2.5vw;
+  width: 2.5vw;
   z-index: 100;
 }
 
@@ -51,13 +53,13 @@ html, body {
   height: 2vw;
   margin: 0.2vw;
   padding: 10px;
-  box-shadow: 1px 5px 10px #A9A9A9;
   cursor: pointer;
 }
 
 /*This is the styling information for the icons for the buttons that change the background when the mouse hovers over them.*/
 .color_selection_icon:hover {
   transition: 200ms;
+  box-shadow: 1px 5px 10px #000000;
   opacity: 0.8;
 }
 
@@ -67,7 +69,7 @@ html, body {
 .main_container {
   background-image: url("/static/images/background-tree.jpeg");
   background-size: 110%;
-  transition: all 2s;
+  transition: all 1s;
 }
 
 /*This is the styling information for menu that contains the calendar event divs.*/
@@ -79,10 +81,11 @@ html, body {
   min-height: 97vh;
   max-height: 97vh;
   overflow: scroll;
-  width: 35vw;
+  width: 20vw;
   margin: 10px;
   display: inline-block;
   flex-direction: column;
+  transition: all 1s;
 }
 
 /*This is the styling information for the calendar event divs.*/
@@ -91,7 +94,7 @@ html, body {
   align: center;
   display: inline-block;
   outline: 1px solid black;
-  width: 31.8vw;
+  width: 85%;
   margin-top: 10px;
   margin-left: 20px;
   margin-right: 10px;
@@ -140,6 +143,7 @@ html, body {
   margin: 10px;
   overflow: scroll;
   padding-bottom: 10px;
+  transition: all 1s;
 
 }
 
@@ -184,13 +188,16 @@ html, body {
 /*This is the styling information for button that closes the event menu popup.*/
 .event_menu_popup .close {
   position: absolute;
-  right: 30px;
+  right: 2%;
+  top: 3%;
   transition: all 200ms;
-  font-size: 2em;
-  font-family: 'Lato', sans-serif;
-  font-weight: bold;
-  text-decoration: none;
+  height: 1.2w;
+  width: 1.2vw;
   color: black:
+}
+
+.event_menu_popup .close:hover {
+  opacity: 0.8;
 }
 
 /*This is the styling information for the coloured header at the top of the event and notes menu popups.*/
