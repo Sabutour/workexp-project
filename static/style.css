@@ -202,7 +202,6 @@ html, body {
 
 .note_box:hover {
   transition: 200ms;
-  opacity: 0.8;
   box-shadow: 2px 2px 15px 2px #616161;
 }
 
