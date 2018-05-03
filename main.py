@@ -65,9 +65,14 @@ def home():
     user_email = user.email()
     user_id_number = user.user_id()
     logout_url = users.create_logout_url('')
+
+
+
     Events = Event.query().filter(Event.user_id_number == user_id_number)
     Notes = Note.query().filter(Note.user_id_number == user_id_number)
     ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
+
+
     return render_template('home.html', Events = Events, Notes = Notes, ToDos = ToDos, user_email = user_email, user_id_number = user_id_number, logout_url = logout_url)
 # [END home]
 

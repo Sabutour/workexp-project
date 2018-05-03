@@ -106,20 +106,24 @@
 
     <!--This div is for the main naviagation sidebar.-->
     <div class="popup_nav" id="nav_bar">
-      <a href="#event_popup">
+      <a href="#event_popup" title="Create Event" class="nav_button">
         <img src="/static/images/event-icon.png" class="icon" />
       </a>
 
-      <a href="#note_popup">
+      <a href="#note_popup" title="Create Note" class="nav_button">
         <img src="static/images/note-icon.png" class="icon" />
       </a>
 
-      <a href="#background_popup">
+      <a href="#background_popup" title="Change Background" class="nav_button">
         <img src="static/images/background-icon.png" class="icon" />
       </a>
 
-      <a href="#logout_popup">
-        <img src="static/images/logout-icon.png" class="icon_logout" />
+      <a href="#game_popup" title="Hextris" class="nav_button">
+        <img src="static/images/game-icon.png" class="icon" />
+      </a>
+
+      <a href="#logout_popup" title="Logout">
+        <img src="static/images/logout-icon.png" class="icon_logout"/>
       </a>
 
     </div>
@@ -272,6 +276,21 @@
       </div>
     </div>
 
+    <div id="game_popup" class="screen_overlay">
+      <div class="event_menu_popup"  style="height:auto; width:60vw;">
+        <div class="popup_header" id="background_popup_header">
+          <a class="close" href="#"><img src="/static/images/close.png" style="height: 1vw; width:1vw;" /></a>
+        </div>
+
+        <br />
+        <div id="main" style="height:auto; width:60vw">
+
+          <iframe src="http://www.hextris.io/" style="width: 60vw; height: 60vh;"></iframe>
+
+        </div>
+      </div>
+    </div>
+
     <div id="logout_popup" class="screen_overlay">
       <div class="background_menu_popup">
         <div class="popup_header" id="logout_popup_header">
@@ -285,8 +304,6 @@
             <div class="logout_button_container">
 
                 <a class="logout_button" href="{{logout_url}}" style="left:5%">Log Out</a>
-
-                <a class="logout_button" href="#" style="left:77%">Cancel</a>
 
               </div>
 
@@ -307,6 +324,21 @@
           <p><strong>Date:</strong> {{form.eventDate}} </p>
           <p><strong>Location:</strong> {{form.eventLocation}} </p>
           <p><strong>Details:</strong> {{form.eventDetails}} </p>
+
+          <form method="post" action="{{ url_for('submitted_note') }}">
+            <div>
+              <div style="display: inline-block; width: 20%;">
+              </div>
+              <div style="display: inline-block; width:60%;">
+                <input type="text" name="noteName" required>
+              </div>
+            </div>
+            </div>
+
+            <input type="hidden" name="entity_key" value="{{user_email}}">
+
+            <input type="submit" value="Delete">
+          </form>
 
         </div>
 
@@ -359,8 +391,8 @@
                 r_text[7] = "Today you are You, that is truer than true. There is no one alive who is Youer than You. <br> - Dr. Seuss";
                 r_text[8] = "Our patience will achieve more than our force. <br> - Edmund Burke";
                 r_text[9] = "Everything precious is also vulnerable. <br> - Mary H.K. Choi";
-                r_text[10] = "Don’t Let Yesterday Take Up Too Much Of Today. <br> - Will Rogers";
-                r_text[11] = "We May Encounter Many Defeats But We Must Not Be Defeated. <br> - Maya Angelou";
+                r_text[10] = "Don’t let yesterday take up too much of today. <br> - Will Rogers";
+                r_text[11] = "We may encounter many defeats but we must not be defeated. <br> - Maya Angelou";
 
               var i = Math.floor(r_text.length * Math.random());
 
