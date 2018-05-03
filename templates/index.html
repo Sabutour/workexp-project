@@ -1,225 +1,35 @@
 <html>
-  <head>
-    <title>HOME PAGE</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+ <head>
+   <title>Loading...</title>
+   <link rel="stylesheet" type="text/css" href="/static/style.css">
 
+   <meta http-equiv="refresh" content="2; URL=/home" />
 
-    <!--This is the script for the clock.-->
-    <script src="/js/clock.js"></script>
-    
-    <!--This is the script for the buttons that change the background.-->
-    <script src="/js/background_images.js"></script>
+   <!--This script, which is loaded when the body loads, submits the form containing the user's ID.-->
+   <script>
 
-    
-    <!--This script, which is loaded when the body loads, submits the form containing the user's ID.-->
-    <script>
-  
-      function submit_user_id_form() {
-        var submitted = 0;
-        if (submitted === 0) {
-          document.getElementById("user_id_number_form").submit();
-          var submitted = 1;
-          alert("Hi");
-        }
-      }
-     </script>
-     
-     
-  </head>
+     var submitted;
 
-  <!--On load, the body begins the clock script, and the script that submits the form containing the user's ID-->
-  <body onload="startTime(); submit_user_id_form()">
+     function submit_user_id_form() {
+       if (submitted == null) {
+         document.getElementById("user_id_number_form").submit();
+         var submitted = 1;
+       }
+     }
+    </script>
 
-    <!--This div is hidden from the page, but is automatically filled with the user's ID email and ID number, gathered in the 'main.py' file, and is submitted onload by the 'submit_user_id_form()' functions.-->
-    <div>
-      <form method="post" id="user_id_number_form" name="user_id_number_form" action="{{ url_for('login') }}" class="hidden_user_id_form">
-        <input type="hidden" name="user_email" value="{{user_email}}">
-        <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
-        <input type="submit" value="Submit" />
-      </form>
-    </div>
-    
-    <!--This experimental div preloads the background images.-->
-    <div class="hidden_user_id_form">
-      <script type="text/javascript">
-        <!--//--><![CDATA[//><!--
-          var images = new Array()
-          function preload() {
-            for (i = 0; i < preload.arguments.length; i++) {
-              images[i] = new Image()
-              images[i].src = preload.arguments[i]
-            }
-          }
-          preload(
-            "/static/images/background-rflower.jpeg",
-            "/static/images/background-tree.jpeg",
-            "/static/images/background-grass.jpg",
-            "/static/images/background-yflower.jpg",
-            "/static/images/background-pflower.jpg",
-            "/static/images/background-web.jpg"
-          )
-        //--><!]]>
-      </script>
-    </div>
-  
-    <!--This div is for the main naviagation sidebar.-->
-    <div class="popup_nav">
-      <a href="#event_popup">
-        <img src="/static/images/event-icon.png" class="icon" />
-      </a>
-    
-      <a href="#note_popup">
-        <img src="static/images/note-icon.png" class="icon" />
-      </a>
-    
-      <!--This div contains the buttons that change the background.-->
-      <div>
-        <button onclick="changeBackgroundPurple()" class="color_selection_icon" style="background-color: #B648FD"></button>
-        <button onclick="changeBackgroundBlue()" class="color_selection_icon" style="background-color: #56a0d9"></button>
-        <button onclick="changeBackgroundRed()" class="color_selection_icon" style="background-color: #BB0303"></button>
-        <button onclick="changeBackgroundYellow()" class="color_selection_icon" style="background-color: #FABB02"></button>
-        <button onclick="changeBackgroundOrange()" class="color_selection_icon" style="background-color: #FF8300"></button>
-        <button onclick="changeBackgroundGreen()" class="color_selection_icon" style="background-color: #33AC20"></button>
-      </div>
-    </div>
-    
-    <!--This is the main container of the page, containing the all menus that aren't navigation or popups.-->
-    <div class="main_container" id="main_container">
-    
-    <!--This div is the event popup that allows the user to add a new event. It is hidden until opened in the navigation menu.-->
-    <div id="event_popup" class="screen_overlay">
-    
-      <div class="event_menu_popup">
-    
-        <div class="popup_header" id="event_popup_header">
-          <a class="close" href="#bottom">x</a>
-        </div>
-    
-        <h2>Enter Event Details:</h2>
-        <br />
-        <div id="main">
-          <form method="post" action="{{ url_for('submitted_form') }}">
-    
-            <label for="eventName">Name:</label>
-            <input type="text" name="eventName">
-    
-            <br />
-            <br />
-    
-            <label for="eventDate">Date:</label>
-            <input type="date" name="eventDate">
-    
-            <br />
-            <br />
-    
-            <label for="eventLocation">Location:</label>
-            <input type="text" name="eventLocation">
-    
-            <br />
-            <br />
-    
-            <label for="eventDetails">Details:</label>
-            <textarea rows="5" name="eventDetails"></textarea><br />
-    
-            <input type="hidden" name="user_email" value="{{user_email}}">
-            <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
-    
-            <input type="submit">
-          </form>
-        </div>
-    
-      </div>
-    
-    </div>
-    
-    <!--This div is the notes popup that allows the user to add a new note. It is hidden until opened in the navigation menu.-->
-    <div id="note_popup" class="screen_overlay">
-    
-      <div class="event_menu_popup">
-    
-        <div class="popup_header" id="note_popup_header">
-          <a class="close" href="#bottom">x</a>
-        </div>
-    
-        <h2>Enter Note Details:</h2>
-        <br />
-        <div id="main">
-          <form method="post" action="{{ url_for('submitted_note') }}">
-            <label for="noteName">Title:</label>
-            <input type="text" name="noteName">
-    
-            <br />
-            <br />
-    
-            <label for="noteContent">Content:</label>
-            <textarea rows="10" min-width="80%" name="noteContent"></textarea>
-    
-            <br />
-            <br />
-    
-            <input type="hidden" name="user_email" value="{{user_email}}">
-            <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
-    
-            <input type="submit">
-          </form>
-        </div>
-    
-      </div>
-    
-    </div>
-  
-      <!--This is the div for the main events/calendar menu.-->
-      <div class="events_menu">
-        
-        <h1 class="title">Calendar Events</h1>
-    
-        <!--This 'for' loop gets the contents of the event from the Google Datastore database and returns it in the form of the calendar/event div, until all events have been returned.-->
-        {% for form in eventForms %}
-    
-        <div class="form_box" id="form_box">
-    
-          <p><strong>Event: {{form.eventName}} </strong></p>
-          <p><strong>Date:</strong> {{form.eventDate}} </p>
-          <p><strong>Location:</strong> {{form.eventLocation}} </p>
-          <p><strong>Details:</strong> {{form.eventDetails}} </p>
-    
-        </div>
-    
-        {% endfor %}
-    
-      </div>
-    
-      <div class="center_column">
-        
-        <!--This div contains the HTML code run by the 'clock.js' file.-->
-        <div class="transbox" >
-          <div id="txt"></div>
-              <p id="day"></p> <p id="month"></p>
-        <p id="year"></p>
-          <div id="date"></div>
-        </div>
-    
-        <!--This is the div for the main events/calendar menu.-->
-        <div class="notes_menu">
-    
-          <!--This 'for' loop gets the contents of the note from the Google Datastore database and returns it in the form of the note div, until all notes have been returned.-->
-          {% for form in noteForms %}
-    
-          <div class="note_box" id="draggable">
-    
-            <p><strong>Title: {{form.noteName}} </strong></p>
-            <p><strong>Content:</strong> {{form.noteContent}} </p>
-    
-          </div>
-    
-          {% endfor %}
-    
-        </div>
-    
-      </div>
-    
-    </div>
+ </head>
 
-  </body>
+ <body onload="submit_user_id_form()">
+
+   <!--This div is hidden from the page, but is automatically filled with the user's ID email and ID number, gathered in the 'main.py' file, and is submitted onload by the 'submit_user_id_form()' functions.-->
+   <div>
+     <form method="post" id="user_id_number_form" name="user_id_number_form" action="{{ url_for('login') }}" class="hidden_user_id_form">
+       <input type="hidden" name="user_email" value="{{user_email}}">
+       <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
+       <input type="submit" value="Submit" />
+     </form>
+   </div>
+
+ </body>
 </html>
