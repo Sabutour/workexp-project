@@ -18,31 +18,39 @@ html, body {
   position: fixed;
   top: 0;
   right: 0;
-  width: 3vw;
+  min-width: 2.7vw;
   height: 100vh;
-  padding-left: 10px;
+  max-width: 3.5vw;
   align-items: center;
   overflow: hidden;
   box-shadow: -5px -10px 25px 3px #616161;
-  background-color: #56a0d9;
-  transition: all 1s;
 }
 
 /*This is the styling information for the main icons on the navigation side bar.*/
 .icon {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2.5vw;
-  width: 2.5vw;
-  z-index: 100;
+  height: 3.5vw;
+  width: 3.5vw;
 }
 
 /*This is the styling information for the main icons on the navigation side bar when the mouse hovers over them.*/
 .icon:hover {
   transition: 200ms;
   opacity: 0.8;
+  box-shadow: 2px 2px 15px 2px #616161;
+}
+
+.icon_logout {
+  position: absolute;
+  height: 3.5vw;
+  width: 3.5vw;
+  bottom: 0;
+}
+
+/*This is the styling information for the main icons on the navigation side bar when the mouse hovers over them.*/
+.icon_logout:hover {
+  transition: 200ms;
+  opacity: 0.8;
+  box-shadow: 2px 2px 15px 2px #616161;
 }
 
 /*This is the styling information for the icons for the buttons that change the background.*/
@@ -70,6 +78,9 @@ html, body {
   background-image: url("/static/images/background-tree.jpeg");
   background-size: 110%;
   transition: all 1s;
+  display: inline-flex;
+  width: 100vw;
+  height: 100vh;
 }
 
 /*This is the styling information for menu that contains the calendar event divs.*/
@@ -80,28 +91,34 @@ html, body {
   background-color: rgba(255, 255, 255, 0.8);
   min-height: 97vh;
   max-height: 97vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: 20vw;
-  margin: 10px;
   display: inline-block;
   flex-direction: column;
   transition: all 1s;
+  margin-top: 1vh;
+  margin-left: 1vw;
 }
 
 /*This is the styling information for the calendar event divs.*/
 .form_box {
-  box-shadow: 2px 2px 15px 2px #616161;
+  overflow-x: hidden;
   align: center;
   display: inline-block;
   outline: 1px solid black;
   width: 85%;
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 10px;
-  margin-bottom: 10px;
+  height: auto;
+  margin: 3%;
   background-color: white;
   padding: 10px;
   font-family: 'Lato', sans-serif;
+}
+
+.form_box:hover {
+  transition: 200ms;
+  opacity: 0.8;
+  box-shadow: 2px 2px 15px 2px #616161;
 }
 
 /*This is the styling information for the column in the center of the page that contains the notes menu and the clock div.*/
@@ -109,64 +126,142 @@ html, body {
   display: inline-block;
   min-height: 80vh;
   max-height: 80vh;
-  min-width: 40vw;
-  max-width: 40vw;
+  min-width: 50vw;
+  max-width: 50vw;
+  margin-left: 1vw;
+  margin-top: 10px;
 }
 
 /*This is the styling information for the div that contains the clock div.*/
 .transbox {
-  margin-left: 10px;
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 3px black;
   padding-top: 1vh;
-  width:40vw;
-  height:10vh;
+  margin-bottom: -3vh;
+  width:50vw;
+  height: auto;
   box-shadow: 2px 2px 15px 2px #616161;
   font-family: 'Lato', sans-serif;
-  font-size: 3em;
+  font-size: 300%;
   text-align: center;
-
 }
+
+.qotr_container {
+  margin-top: 2vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px black;
+  padding-top: 3vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  width:48vw;
+  min-height:10vh;
+  height: auto;
+  box-shadow: 2px 2px 15px 2px #616161;
+  font-family: 'Lato', sans-serif;
+  font-size: 150%;
+  font-style: italic;
+  text-align: center;
+}
+
 
 /*This is the styling information for the menu that contains the note divs.*/
 .notes_menu {
   box-shadow: 2px 2px 15px 2px #616161;
   flex-direction: row;
+  padding-bottom: 1vh;
   /* background-color: #fae50e; */
   background-color: rgba(255, 255, 255, 0.8);
-  min-height: 85vh;
-  max-height: 85vh;
-  min-width: 40vw;
-  max-width: 40vw;
+  min-height: 5vh;
+  max-height: 65vh;
+  min-width: 50vw;
+  max-width: 50vw;
   bottom: 0;
-  margin: 10px;
   overflow: scroll;
-  padding-bottom: 10px;
   transition: all 1s;
-
 }
 
 /*This is the styling information for the note divs.*/
 .note_box {
-  box-shadow: 2px 2px 15px 2px #616161;
+  box-shadow: 1px 1px 5px 1px #616161;
   font-family: 'Lato', sans-serif;
-  outline: 1px solid black;
-  width: 25%;
+  min-width: 25%;
+  max-width: auto;
+  min-height: 5%;
   height: auto;
   padding: 20px;
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 10px;
-  margin-bottom: 10px;
+  margin-bottom: -px;
   background-color: #FFFFFF;
   text-overflow: clip;
-  display: inline-grid;
+  display: inline-block;
+  overflow-x: hidden;
+}
+
+.note_box:hover {
+  transition: 200ms;
+  opacity: 0.8;
+  box-shadow: 2px 2px 15px 2px #616161;
+}
+
+.todo_box {
+  height: auto;
+  overflow-x: hidden;
+  align: center;
+  width: 95%;
+  background-color: white;
+  padding: 10px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 3px;
+}
+
+.todo_box:hover {
+  opacity: 0.8;
+  box-shadow: 2px 2px 15px 2px #616161;
+  transition: 200ms;
 }
 
 /*This is the styling information for the div on the 'submitted_note', 'submitted_form' and 'login' pages. It is hidden as the page auto-redirects.*/
 .submitted_container {
   visibility: hidden;
+  display: none;™
+}
+
+.todo_enter_box {
+  text-align: center;
+}
+
+.logout_button {
+  position: absolute;
+  outline: 1px solid black;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  left: 50%;
+  padding: 2%;
+  margin-bottom: 10%;
+}
+
+.logout_button:hover {
+  opacity: 0.8;
+  background-color: #F0F3F4;
+  transition: 200ms;
+}
+
+.logout_button_container {
+  align-content: center;
+  padding-bottom: 10%;
+  text-align: center;
+}
+
+input[type="submit"] {
+  outline: 1px solid black;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  padding: 2%;
 }
 
 /*----------POPUPS----------*/
@@ -184,6 +279,36 @@ html, body {
   font-family: 'Lato', sans-serif;
   overflow: hidden;
 }
+
+.background_menu_popup {
+  min-width:15.5vw;
+  max-width: 17vw;
+  height: auto;
+  margin: 70px auto;
+  padding: 20px;
+  background: #000000;
+  border-radius: 5px;
+  position: relative;
+  background-color: white;
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
+}
+
+.background_menu_popup .close1 {
+  position: absolute;
+  right: 2%;
+  top: 7%;
+  transition: all 200ms;
+  height: 1.2w;
+  width: 1.2vw;
+  color: black:
+}
+
+
+.background_menu_popup .close1:hover {
+  opacity: 0.8;
+}
+
 
 /*This is the styling information for button that closes the event menu popup.*/
 .event_menu_popup .close {
@@ -219,7 +344,6 @@ html, body {
 
 /*This is the styling information for title in the calendar events menu.*/
 .title {
-  margin-left: 20px;
   font-family: 'Lato', sans-serif;
 }
 
@@ -254,3 +378,6 @@ html, body {
     /* visibility: hidden;
     display: none; */
   }
+
+
+/*To do list follows*/

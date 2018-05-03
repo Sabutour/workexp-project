@@ -18,7 +18,7 @@ class Account(ndb.Model):
     user_email = ndb.GenericProperty()
     user_id_number = ndb.GenericProperty()
 
-class EventForm(ndb.Model):
+class Event(ndb.Model):
     user_email = ndb.GenericProperty()
     user_id_number = ndb.GenericProperty()
     eventName = ndb.StringProperty()
@@ -26,11 +26,16 @@ class EventForm(ndb.Model):
     eventLocation = ndb.StringProperty()
     eventDetails = ndb.TextProperty()
 
-class NoteForm(ndb.Model):
+class Note(ndb.Model):
     user_email = ndb.GenericProperty()
     user_id_number = ndb.GenericProperty()
     noteName = ndb.StringProperty()
     noteContent = ndb.TextProperty()
+
+class ToDo(ndb.Model):
+    user_id_number = ndb.GenericProperty()
+    todo_string = ndb.GenericProperty()
+
 # [END GOOGLE DATASTORE 'KIND' INITILISATION]
 
 # [START app]
@@ -59,22 +64,12 @@ def home():
     user = users.get_current_user()
     user_email = user.email()
     user_id_number = user.user_id()
-    eventForms = EventForm.query().filter(EventForm.user_id_number == user_id_number)
-    noteForms = NoteForm.query().filter(NoteForm.user_id_number == user_id_number)
-    return render_template('home.html', eventForms = eventForms, noteForms = noteForms, user_email = user_email, user_id_number = user_id_number)
+    logout_url = users.create_logout_url('')
+    Events = Event.query().filter(Event.user_id_number == user_id_number)
+    Notes = Note.query().filter(Note.user_id_number == user_id_number)
+    ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
+    return render_template('home.html', Events = Events, Notes = Notes, ToDos = ToDos, user_email = user_email, user_id_number = user_id_number, logout_url = logout_url)
 # [END home]
-
-# [START form]
-@app.route('/form')
-def form():
-    return render_template('form.html')
-# [END form]
-
-# [START note]
-@app.route('/note')
-def note():
-    return render_template('note.html')
-# [END note]
 
 # [START login submitted]
 @app.route('/login', methods=['POST'])
@@ -103,7 +98,7 @@ def submitted_form():
     eventLocation = request.form['eventLocation']
     eventDetails = request.form['eventDetails']
 
-    form = EventForm(user_email = user_email, user_id_number = user_id_number, eventName = eventName, eventDate = eventDate, eventLocation = eventLocation, eventDetails = eventDetails)
+    form = Event(user_email = user_email, user_id_number = user_id_number, eventName = eventName, eventDate = eventDate, eventLocation = eventLocation, eventDetails = eventDetails)
     form.put()
 # [END event submitted]
 
@@ -126,7 +121,7 @@ def submitted_note():
     noteName = request.form['noteName']
     noteContent = request.form['noteContent']
 
-    form = NoteForm(user_email = user_email, user_id_number = user_id_number, noteName = noteName, noteContent = noteContent)
+    form = Note(user_email = user_email, user_id_number = user_id_number, noteName = noteName, noteContent = noteContent)
     form.put()
     # [END note submitted]
 
@@ -138,6 +133,20 @@ def submitted_note():
         noteName=noteName,
         noteContent=noteContent)
     # [END note render_template]
+
+@app.route('/submiited_todo', methods=['POST'])
+def submitted_todo():
+    user_id_number = request.form['user_id_number']
+    todo_string = request.form['todo_string']
+
+    form = ToDo(user_id_number = user_id_number, todo_string = todo_string)
+    form.put()
+
+    return render_template(
+    'submitted_todo.html',
+    user_id_number=user_id_number,
+    todo_string=todo_string
+    )
 
 @app.errorhandler(500)
 def server_error(e):
