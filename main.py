@@ -38,6 +38,26 @@ class ToDo(ndb.Model):
 
 # [END GOOGLE DATASTORE 'KIND' INITILISATION]
 
+# [START DELETE CLASS INITILISATION]
+class DeleteEventEntitiy(RequestHandler):
+    def post(self):
+        event_key = ndb.Key('Event').get()
+        event_key.delete()
+        self.redirect(self.request.referer)
+        
+class DeleteNoteEntitiy(RequestHandler):
+    def post(self):
+        note_key = ndb.Key('Note').get()
+        note_key.delete()
+        self.redirect(self.request.referer)
+        
+class DeleteToDoEntitiy(RequestHandler):
+    def post(self):
+        todo_key = ndb.Key('ToDo').get()
+        todo_key.delete()
+        
+# [END DELETE CLASS INITILISATION]
+
 # [START app]
 import logging
 
@@ -65,6 +85,9 @@ def home():
     user_email = user.email()
     user_id_number = user.user_id()
     logout_url = users.create_logout_url('')
+    event_key = ndb.Key('Event').get()
+    note_key = ndb.Key('Note').get()
+    todo_key = ndb.Key('ToDo').get()
     Events = Event.query().filter(Event.user_id_number == user_id_number)
     Notes = Note.query().filter(Note.user_id_number == user_id_number)
     ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
