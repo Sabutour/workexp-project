@@ -65,9 +65,6 @@ def home():
     user_email = user.email()
     user_id_number = user.user_id()
     logout_url = users.create_logout_url('')
-
-
-
     Events = Event.query().filter(Event.user_id_number == user_id_number)
     Notes = Note.query().filter(Note.user_id_number == user_id_number)
     ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
