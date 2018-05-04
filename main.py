@@ -65,6 +65,7 @@ def home():
     user_email = user.email()
     user_id_number = user.user_id()
     logout_url = users.create_logout_url('')
+
     Events = Event.query().filter(Event.user_id_number == user_id_number)
     Notes = Note.query().filter(Note.user_id_number == user_id_number)
     ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
@@ -104,6 +105,7 @@ def submitted_form():
     form.put()
 # [END event submitted]
 
+
     # [START event render_template]
     return render_template(
         'submitted_form.html',
@@ -114,6 +116,72 @@ def submitted_form():
         eventLocation=eventLocation,
         eventDetails=eventDetails)
     # [END render_template]
+
+@app.route('/deleted_event', methods=['POST'])
+def deleted_event():
+    event_id = request.form['event_id']
+    event_urlsafe = request.form['event_urlsafe']
+    event_key = ndb.Key(urlsafe=event_urlsafe)
+    event = event_key.get()
+
+    import logging
+    logging.error(event_id)
+    logging.error(event_urlsafe)
+    logging.error(event_key)
+    logging.error(event)
+
+    event.key.delete()
+
+    return render_template(
+    'deleted_event.html',
+    user_id_number=user_id_number,
+    event_id=event_id,
+    event_urlsafe=event_urlsafe,
+    )
+
+@app.route('/deleted_note', methods=['POST'])
+def deleted_note():
+    note_id = request.form['note_id']
+    note_urlsafe = request.form['note_urlsafe']
+    note_key = ndb.Key(urlsafe=note_urlsafe)
+    note = note_key.get()
+
+    import logging
+    logging.error(note_id)
+    logging.error(note_urlsafe)
+    logging.error(note_key)
+    logging.error(note)
+
+    note.key.delete()
+
+    return render_template(
+    'deleted_note.html',
+    user_id_number=user_id_number,
+    note_id=note_id,
+    note_urlsafe=note_urlsafe,
+    )
+
+@app.route('/deleted_todo', methods=['POST'])
+def deleted_todo():
+    todo_id = request.form['todo_id']
+    todo_urlsafe = request.form['todo_urlsafe']
+    todo_key = ndb.Key(urlsafe=todo_urlsafe)
+    todo = todo_key.get()
+
+    import logging
+    logging.error(todo_id)
+    logging.error(todo_urlsafe)
+    logging.error(todo_key)
+    logging.error(todo)
+
+    todo.key.delete()
+
+    return render_template(
+    'deleted_todo.html',
+    user_id_number=user_id_number,
+    todo_id=todo_id,
+    todo_urlsafe=todo_urlsafe,
+    )
 
 # [START note submitted]
 @app.route('/submitted_note', methods=['POST'])

@@ -33,6 +33,7 @@
         document.getElementById("note_popup_header").style.backgroundColor = "#B648FD";
         document.getElementById("background_popup_header").style.backgroundColor = "#B648FD";
         document.getElementById("logout_popup_header").style.backgroundColor = "#B648FD";
+        document.getElementById("logout_popup_header").style.backgroundColor = "#B648FD";
       }
 
       function changeBackgroundBlue() {
@@ -235,7 +236,7 @@
                 <label for="conteContent">Content:</label>
               </div>
               <div style="display: inline-block; width:60%;">
-                <textarea rows="5"name="noteContent"></textarea>
+                <textarea rows="5"name="noteContent" required></textarea>
               </div>
             </div>
 
@@ -325,17 +326,9 @@
           <p><strong>Location:</strong> {{form.eventLocation}} </p>
           <p><strong>Details:</strong> {{form.eventDetails}} </p>
 
-          <form method="post" action="{{ url_for('submitted_note') }}">
-            <div>
-              <div style="display: inline-block; width: 20%;">
-              </div>
-              <div style="display: inline-block; width:60%;">
-                <input type="text" name="noteName" required>
-              </div>
-            </div>
-            </div>
-
-            <input type="hidden" name="entity_key" value="{{user_email}}">
+          <form method="post" action="{{ url_for('deleted_event') }}">
+            <input type="hidden" name="event_id" value="{{form.key.id()}}">
+            <input type="hidden" name="event_urlsafe" value="{{form.key.urlsafe()}}">
 
             <input type="submit" value="Delete">
           </form>
@@ -369,6 +362,13 @@
 
             <p><strong>Title: {{form.noteName}} </strong></p>
             <p><strong>Content:</strong> {{form.noteContent}} </p>
+
+            <form method="post" action="{{ url_for('deleted_note') }}">
+              <input type="hidden" name="note_id" value="{{form.key.id()}}">
+              <input type="hidden" name="note_urlsafe" value="{{form.key.urlsafe()}}">
+
+              <input type="submit" value="Delete">
+            </form>
 
           </div>
 
@@ -423,6 +423,13 @@
             <div class="todo_box" id="todo_box">
 
               <p><strong>{{form.todo_string}} </strong></p>
+
+              <form method="post" action="{{ url_for('deleted_todo') }}">
+                <input type="hidden" name="todo_id" value="{{form.key.id()}}">
+                <input type="hidden" name="todo_urlsafe" value="{{form.key.urlsafe()}}">
+
+                <input type="submit" value="Delete">
+              </form>
 
             </div>
 
