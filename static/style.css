@@ -232,6 +232,18 @@ html, body {
   transition: 200ms;
 }
 
+/*This is the styling information information for the form labels in */
+.form_labels {
+  display: inline-block;
+}
+
+.form_inputs {
+  width: 70%;
+  display: inline-block;
+  margin-left: 1vw;
+  left: 0;
+}
+
 /*This is the styling information for the div on the 'submitted_note', 'submitted_form' and 'login' pages. It is hidden as the page auto-redirects.*/
 .submitted_container {
   visibility: hidden;
@@ -386,14 +398,3 @@ textarea {
     /* visibility: hidden;
     display: none; */
   }
-
-.form_labels {
-  display: inline-block;
-}
-
-.form_inputs {
-  width: 70%;
-  display: inline-block;
-  margin-left: 1vw;
-  left: 0;
-}
