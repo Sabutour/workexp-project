@@ -13,7 +13,7 @@ user_email = user.email()
 user_id_number = user.user_id()
 # [END GLOBAL VARIABLE INITILISATION]
 
-# [GOOGLE DATASTORE 'KIND' INITILISATION]
+# [GOOGLE DATASTORE MODEL INITILISATION]
 class Account(ndb.Model):
     user_email = ndb.GenericProperty()
     user_id_number = ndb.GenericProperty()
@@ -35,8 +35,7 @@ class Note(ndb.Model):
 class ToDo(ndb.Model):
     user_id_number = ndb.GenericProperty()
     todo_string = ndb.GenericProperty()
-
-# [END GOOGLE DATASTORE 'KIND' INITILISATION]
+# [END GOOGLE DATASTORE MODEL INITILISATION]
 
 # [START app]
 import logging
@@ -70,7 +69,6 @@ def home():
     Notes = Note.query().filter(Note.user_id_number == user_id_number)
     ToDos = ToDo.query().filter(ToDo.user_id_number == user_id_number)
 
-
     return render_template('home.html', Events = Events, Notes = Notes, ToDos = ToDos, user_email = user_email, user_id_number = user_id_number, logout_url = logout_url)
 # [END home]
 
@@ -84,12 +82,12 @@ def login():
     form.put()
 # [END login submitted]
 
-    # [START login render_template]
+    # [START login submitted render_template]
     return render_template(
     'login.html',
     user_email=user_email,
     user_id_number=user_id_number)
-    # [END login render_template]
+    # [END login submitted render_template]
 
 # [START event submitted]
 @app.route('/submitted_form', methods=['POST'])
@@ -105,7 +103,6 @@ def submitted_form():
     form.put()
 # [END event submitted]
 
-
     # [START event render_template]
     return render_template(
         'submitted_form.html',
@@ -115,73 +112,26 @@ def submitted_form():
         eventDate=eventDate,
         eventLocation=eventLocation,
         eventDetails=eventDetails)
-    # [END render_template]
+    # [END event render_template]
 
+# [START event deleted]
 @app.route('/deleted_event', methods=['POST'])
 def deleted_event():
     event_id = request.form['event_id']
     event_urlsafe = request.form['event_urlsafe']
     event_key = ndb.Key(urlsafe=event_urlsafe)
     event = event_key.get()
-
-    import logging
-    logging.error(event_id)
-    logging.error(event_urlsafe)
-    logging.error(event_key)
-    logging.error(event)
-
     event.key.delete()
+# [END event deleted]
 
+    # [START event deleted render_template]
     return render_template(
-    'deleted_event.html',
-    user_id_number=user_id_number,
-    event_id=event_id,
-    event_urlsafe=event_urlsafe,
+        'deleted_event.html',
+        user_id_number=user_id_number,
+        event_id=event_id,
+        event_urlsafe=event_urlsafe,
     )
-
-@app.route('/deleted_note', methods=['POST'])
-def deleted_note():
-    note_id = request.form['note_id']
-    note_urlsafe = request.form['note_urlsafe']
-    note_key = ndb.Key(urlsafe=note_urlsafe)
-    note = note_key.get()
-
-    import logging
-    logging.error(note_id)
-    logging.error(note_urlsafe)
-    logging.error(note_key)
-    logging.error(note)
-
-    note.key.delete()
-
-    return render_template(
-    'deleted_note.html',
-    user_id_number=user_id_number,
-    note_id=note_id,
-    note_urlsafe=note_urlsafe,
-    )
-
-@app.route('/deleted_todo', methods=['POST'])
-def deleted_todo():
-    todo_id = request.form['todo_id']
-    todo_urlsafe = request.form['todo_urlsafe']
-    todo_key = ndb.Key(urlsafe=todo_urlsafe)
-    todo = todo_key.get()
-
-    import logging
-    logging.error(todo_id)
-    logging.error(todo_urlsafe)
-    logging.error(todo_key)
-    logging.error(todo)
-
-    todo.key.delete()
-
-    return render_template(
-    'deleted_todo.html',
-    user_id_number=user_id_number,
-    todo_id=todo_id,
-    todo_urlsafe=todo_urlsafe,
-    )
+    # [END event deleted render_template]
 
 # [START note submitted]
 @app.route('/submitted_note', methods=['POST'])
@@ -195,15 +145,37 @@ def submitted_note():
     form.put()
     # [END note submitted]
 
-    # [START note render_template]
+    # [START note submitted render_template]
     return render_template(
         'submitted_note.html',
         user_email=user_email,
         user_id_number=user_id_number,
         noteName=noteName,
         noteContent=noteContent)
-    # [END note render_template]
+    # [END note submitted render_template]
 
+# [START note deleted]
+@app.route('/deleted_note', methods=['POST'])
+def deleted_note():
+    note_id = request.form['note_id']
+    note_urlsafe = request.form['note_urlsafe']
+    note_key = ndb.Key(urlsafe=note_urlsafe)
+    note = note_key.get()
+    note.key.delete()
+# [END note deleted]
+
+    # [START note deleted render_template]
+    return render_template(
+        'deleted_note.html',
+        user_id_number=user_id_number,
+        note_id=note_id,
+        note_urlsafe=note_urlsafe,
+    )
+    # [END note deleted render_template]
+
+
+
+# [START todo submitted]
 @app.route('/submiited_todo', methods=['POST'])
 def submitted_todo():
     user_id_number = request.form['user_id_number']
@@ -211,12 +183,34 @@ def submitted_todo():
 
     form = ToDo(user_id_number = user_id_number, todo_string = todo_string)
     form.put()
+# [END todo submitted]
 
+    # [START todo submitted render_template]
     return render_template(
-    'submitted_todo.html',
-    user_id_number=user_id_number,
-    todo_string=todo_string
+        'submitted_todo.html',
+        user_id_number=user_id_number,
+        todo_string=todo_string
     )
+    # [END todo submitted render_template]
+
+# [START todo deleted]
+@app.route('/deleted_todo', methods=['POST'])
+def deleted_todo():
+    todo_id = request.form['todo_id']
+    todo_urlsafe = request.form['todo_urlsafe']
+    todo_key = ndb.Key(urlsafe=todo_urlsafe)
+    todo = todo_key.get()
+    todo.key.delete()
+# [END todo deleted]
+
+    # [START todo deleted render_template]
+    return render_template(
+        'deleted_todo.html',
+        user_id_number=user_id_number,
+        todo_id=todo_id,
+        todo_urlsafe=todo_urlsafe,
+    )
+    # [END todo deleted render_template]
 
 @app.errorhandler(500)
 def server_error(e):

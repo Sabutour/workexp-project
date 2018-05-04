@@ -1,6 +1,7 @@
 <html>
   <head>
-    <title>HOME PAGE</title>
+    <title>LifeNote</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
@@ -18,7 +19,6 @@
         document.getElementById('txt').innerHTML = today.getDate() + "/" + month + "/" + y + "  " + "  " + h + ":" + m + ":" + s;
         var t = setTimeout(startTime, 500);
       }
-
       function checkTime(i) {
         if (i < 10) {i = "0" + i}; //add zero in front of numbers < 10
         return i;
@@ -31,47 +31,47 @@
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-pflower.jpg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#B648FD";
         document.getElementById("note_popup_header").style.backgroundColor = "#B648FD";
+        document.getElementById("game_popup_header").style.backgroundColor = "#B648FD";
         document.getElementById("background_popup_header").style.backgroundColor = "#B648FD";
         document.getElementById("logout_popup_header").style.backgroundColor = "#B648FD";
-        document.getElementById("logout_popup_header").style.backgroundColor = "#B648FD";
       }
-
       function changeBackgroundBlue() {
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-tree.jpeg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#56a0d9";
         document.getElementById("note_popup_header").style.backgroundColor = "#56a0d9";
+        document.getElementById("game_popup_header").style.backgroundColor = "#56a0d9";
         document.getElementById("background_popup_header").style.backgroundColor = "#56a0d9";
         document.getElementById("logout_popup_header").style.backgroundColor = "#56a0d9";
       }
-
       function changeBackgroundRed() {
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-rflower.jpeg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#BB0303";
         document.getElementById("note_popup_header").style.backgroundColor = "#BB0303";
+        document.getElementById("game_popup_header").style.backgroundColor = "#BB0303";
         document.getElementById("background_popup_header").style.backgroundColor = "#BB0303";
         document.getElementById("logout_popup_header").style.backgroundColor = "#BB0303";
       }
-
       function changeBackgroundYellow() {
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-yflower.jpg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#FABB02";
         document.getElementById("note_popup_header").style.backgroundColor = "#FABB02";
+        document.getElementById("game_popup_header").style.backgroundColor = "#FABB02";
         document.getElementById("background_popup_header").style.backgroundColor = "#FABB02";
         document.getElementById("logout_popup_header").style.backgroundColor = "#FABB02";
       }
-
       function changeBackgroundOrange() {
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-web.jpg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#FF8300";
         document.getElementById("note_popup_header").style.backgroundColor = "#FF8300";
+        document.getElementById("game_popup_header").style.backgroundColor = "#FF8300";
         document.getElementById("background_popup_header").style.backgroundColor = "#FF8300";
         document.getElementById("logout_popup_header").style.backgroundColor = "#FF8300";
       }
-
       function changeBackgroundGreen() {
         document.getElementById("main_container").style.backgroundImage = "url('/static/images/background-grass.jpg')";
         document.getElementById("event_popup_header").style.backgroundColor = "#33AC20";
         document.getElementById("note_popup_header").style.backgroundColor = "#33AC20";
+        document.getElementById("game_popup_header").style.backgroundColor = "#33AC20";
         document.getElementById("background_popup_header").style.backgroundColor = "#33AC20";
         document.getElementById("logout_popup_header").style.backgroundColor = "#33AC20";
       }
@@ -108,25 +108,24 @@
     <!--This div is for the main naviagation sidebar.-->
     <div class="popup_nav" id="nav_bar">
       <a href="#event_popup" title="Create Event" class="nav_button">
-        <img src="/static/images/event-icon.png" class="icon" />
+        <img id="nav_event" src="/static/images/event-icon.png" class="icon" />
       </a>
 
       <a href="#note_popup" title="Create Note" class="nav_button">
-        <img src="static/images/note-icon.png" class="icon" />
+        <img id="nav_note" src="static/images/note-icon.png" class="icon" />
       </a>
 
       <a href="#background_popup" title="Change Background" class="nav_button">
-        <img src="static/images/background-icon.png" class="icon" />
+        <img id="nav_background" src="static/images/background-icon.png" class="icon" />
       </a>
 
       <a href="#game_popup" title="Hextris" class="nav_button">
-        <img src="static/images/game-icon.png" class="icon" />
+        <img id="nav_game" src="static/images/game-icon.png" class="icon" />
       </a>
 
       <a href="#logout_popup" title="Logout">
-        <img src="static/images/logout-icon.png" class="icon_logout"/>
+        <img  id="nav_logout" src="static/images/logout-icon.png" class="icon_logout"/>
       </a>
-
     </div>
 
     <!--This is the main container of the page, containing the all menus that aren't navigation or popups.-->
@@ -219,10 +218,12 @@
         <div id="main">
 
           <form method="post" action="{{ url_for('submitted_note') }}">
+
             <div>
               <div style="display: inline-block; width: 20%;">
                 <label for="noteName">Title:</label>
               </div>
+
               <div style="display: inline-block; width:60%;">
                 <input type="text" name="noteName" required>
               </div>
@@ -254,8 +255,7 @@
 
     </div>
 
-<!-- Background popup -->
-
+    <!--This popup contains the option to change the background and colour scheme of the website.-->
     <div id="background_popup" class="screen_overlay">
       <div class="background_menu_popup">
         <div class="popup_header" id="background_popup_header">
@@ -277,9 +277,10 @@
       </div>
     </div>
 
+    <!--This popup contains an iframe to an online game called Hextris.-->
     <div id="game_popup" class="screen_overlay">
       <div class="event_menu_popup"  style="height:auto; width:60vw;">
-        <div class="popup_header" id="background_popup_header">
+        <div class="popup_header" id="game_popup_header">
           <a class="close" href="#"><img src="/static/images/close.png" style="height: 1vw; width:1vw;" /></a>
         </div>
 
@@ -292,6 +293,7 @@
       </div>
     </div>
 
+    <!--This popout contains a confirmation of logging out, to prevent accidentally logging out.-->
     <div id="logout_popup" class="screen_overlay">
       <div class="background_menu_popup">
         <div class="popup_header" id="logout_popup_header">
@@ -302,40 +304,35 @@
             Are you sure you would like to log out?
           </p>
 
-            <div class="logout_button_container">
-
-                <a class="logout_button" href="{{logout_url}}" style="left:5%">Log Out</a>
-
-              </div>
-
+          <div class="logout_button_container">
+            <a class="logout_button" href="{{logout_url}}" style="left:5%">Log Out</a>
+          </div>
       </div>
     </div>
 
-      <!--This is the div for the main events/calendar menu.-->
-      <div class="events_menu" id="events_menu">
+    <!--This is the div for the main events/calendar menu.-->
+    <div class="events_menu" id="events_menu">
 
-        <h1 class="title" style="text-align: center;">Calendar Events</h1>
+      <h1 class="title" style="text-align: center;">Calendar Events</h1>
 
-        <!--This 'for' loop gets the contents of the event from the Google Datastore database and returns it in the form of the calendar/event div, until all events have been returned.-->
-        {% for form in Events %}
+      <!--This 'for' loop gets the contents of the event from the Google Datastore database and returns it in the form of the calendar/event div, until all events have been returned.-->
+      {% for form in Events %}
 
-        <div class="todo_box" id="form_box">
+      <div class="todo_box" id="form_box">
 
-          <p><strong>Event: {{form.eventName}} </strong></p>
-          <p><strong>Date:</strong> {{form.eventDate}} </p>
-          <p><strong>Location:</strong> {{form.eventLocation}} </p>
-          <p><strong>Details:</strong> {{form.eventDetails}} </p>
+        <p><strong>Event: {{form.eventName}} </strong></p>
+        <p><strong>Date:</strong> {{form.eventDate}} </p>
+        <p><strong>Location:</strong> {{form.eventLocation}} </p>
+        <p><strong>Details:</strong> {{form.eventDetails}} </p>
 
-          <form method="post" action="{{ url_for('deleted_event') }}">
-            <input type="hidden" name="event_id" value="{{form.key.id()}}">
-            <input type="hidden" name="event_urlsafe" value="{{form.key.urlsafe()}}">
-
-            <input type="submit" value="Delete">
-          </form>
-
+        <form method="post" action="{{ url_for('deleted_event') }}">
+          <input type="hidden" name="event_id" value="{{form.key.id()}}">
+          <input type="hidden" name="event_urlsafe" value="{{form.key.urlsafe()}}">
+          <input type="submit" value="Delete">
+        </form>
         </div>
 
-        {% endfor %}
+      {% endfor %}
 
       </div>
 
@@ -345,12 +342,9 @@
         <div class="transbox" >
           <div id="txt"></div>
               <p id="day"></p> <p id="month"></p>
-        <p id="year"></p>
+              <p id="year"></p>
           <div id="date"></div>
-
         </div>
-
-
 
         <!--This is the div for the main events/calendar menu.-->
         <div class="notes_menu" id="notes_menu">
@@ -366,7 +360,6 @@
             <form method="post" action="{{ url_for('deleted_note') }}">
               <input type="hidden" name="note_id" value="{{form.key.id()}}">
               <input type="hidden" name="note_urlsafe" value="{{form.key.urlsafe()}}">
-
               <input type="submit" value="Delete">
             </form>
 
@@ -376,7 +369,7 @@
 
         </div>
 
-        <!--This div contains the HTML code run by the 'clock.js' file.-->
+        <!--This div contains the scripting for the 'Quote of the Refresh'-->
         <div class="qotr_container">
             <script>
 
@@ -393,51 +386,47 @@
                 r_text[9] = "Everything precious is also vulnerable. <br> - Mary H.K. Choi";
                 r_text[10] = "Don’t let yesterday take up too much of today. <br> - Will Rogers";
                 r_text[11] = "We may encounter many defeats but we must not be defeated. <br> - Maya Angelou";
+                r_text[12] = "Taste every fruit of every tree in the garden at least once. It is an insult to creation not to experience it fully. Temperance is wickedness. <br> - Stephen Fry";
+                r_text[13] = "l love you as certain dark things are to be loved, in secret, between the shadow and the soul. <br> - Pablo Neruda";
+                r_text[14] = "I became insane, with long intervals of horrible sanity. <br> - Edgar Allan Poe";
+                r_text[15] = "Books are a uniquely portable magic. <br> - Stephen King";
+                r_text[16] = "It is one of the blessings of old friends that you can afford to be stupid with them. <br> Ralph Waldo Emerson";
+                r_text[17] = "Music expresses that which cannot be put into words and that which cannot remain silent. <br> - Victor Hugo";
+                r_text[18] = "What is the point of being alive if you don't at least try to do something remarkable? <br> - John Green";
 
-              var i = Math.floor(r_text.length * Math.random());
+                var i = Math.floor(r_text.length * Math.random());
 
-              document.write("<center><FONT COLOR='black'>" +
-              r_text[i]  + "</FONT></center><br/>");
+                document.write("<center><FONT COLOR='black'>" +
+                r_text[i]  + "</FONT></center><br/>");
 
-          </script>
-        </div>
-
-
-        </div>
-
-          <div class="events_menu" id="events_menu">
-
-            <h1 class="title" style="text-align: center;">To Do List</h1>
-
-            <form class="todo_enter_box" method="post" action="{{ url_for('submitted_todo') }}">
-              <label for=todo_string></label>
-              <input type="text" name="todo_string" style="width:80%;"required>
-              <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
-
-              <input type="submit">
-            </form>
-
-            <!--This 'for' loop gets the contents of the event from the Google Datastore database and returns it in the form of the calendar/event div, until all events have been returned.-->
-            {% for form in ToDos %}
-
-            <div class="todo_box" id="todo_box">
-
-              <p><strong>{{form.todo_string}} </strong></p>
-
-              <form method="post" action="{{ url_for('deleted_todo') }}">
-                <input type="hidden" name="todo_id" value="{{form.key.id()}}">
-                <input type="hidden" name="todo_urlsafe" value="{{form.key.urlsafe()}}">
-
-                <input type="submit" value="Delete">
-              </form>
-
-            </div>
-
-            {% endfor %}
-
+            </script>
           </div>
-    </div>
+        </div>
 
+        <!--This is the div that contains all of the todo's, as well as the form to submit/create new ones.-->
+        <div class="events_menu" id="events_menu">
 
+          <h1 class="title" style="text-align: center;">To Do List</h1>
+
+          <form class="todo_enter_box" method="post" action="{{ url_for('submitted_todo') }}">
+            <label for=todo_string></label>
+            <input type="text" name="todo_string" style="width:80%;"required>
+            <input type="hidden" name="user_id_number"  value="{{user_id_number}}">
+            <input type="submit">
+          </form>
+
+          <!--This 'for loop' gets the contents of the todo from the Google Datastore database and returns it in the form of a todo div, until all todo's have been returned.-->
+          {% for form in ToDos %}
+            <div class="todo_box" id="todo_box">
+                <p><strong>{{form.todo_string}} </strong></p>
+                <form method="post" action="{{ url_for('deleted_todo') }}">
+                  <input type="hidden" name="todo_id" value="{{form.key.id()}}">
+                  <input type="hidden" name="todo_urlsafe" value="{{form.key.urlsafe()}}">
+                  <button type="submit" value="submit">Delete</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
   </body>
 </html>

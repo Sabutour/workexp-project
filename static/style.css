@@ -81,14 +81,15 @@ html, body {
 /*This is the styling information for main container of the page.*/
 .main_container {
   background-image: url("/static/images/background-tree.jpeg");
-  background-size: 110%;
+  background-size: auto;
   transition: all 1s;
   display: inline-flex;
   width: 100vw;
   height: 100vh;
+  background-repeat: no-repeat;
 }
 
-/*This is the styling information for menu that contains the calendar event divs.*/
+/*This is the styling information for menu that contains the calendar event divs and for the main todo menu container.*/
 .events_menu {
   padding-top: 10px;
   box-shadow: 2px 2px 15px 2px #616161;
@@ -152,23 +153,6 @@ html, body {
   text-align: center;
 }
 
-.qotr_container {
-  margin-top: 2vh;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 3px black;
-  padding-top: 3vh;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  width:48vw;
-  min-height:10vh;
-  height: auto;
-  box-shadow: 2px 2px 15px 2px #616161;
-  font-family: 'Lato', sans-serif;
-  font-size: 150%;
-  font-style: italic;
-  text-align: center;
-}
-
 
 /*This is the styling information for the menu that contains the note divs.*/
 .notes_menu {
@@ -205,11 +189,31 @@ html, body {
   overflow-x: hidden;
 }
 
+/*This is the styling information for the note divs when the mouse hovers over them.*/
 .note_box:hover {
   transition: 200ms;
   box-shadow: 2px 2px 15px 2px #616161;
 }
 
+/*This is the styling information for the 'Quote of the Refresh' container.*/
+.qotr_container {
+  margin-top: 2vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 3px black;
+  padding-top: 3vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  width:48vw;
+  min-height:10vh;
+  height: auto;
+  box-shadow: 2px 2px 15px 2px #616161;
+  font-family: 'Lato', sans-serif;
+  font-size: 150%;
+  font-style: italic;
+  text-align: center;
+}
+
+/*This is the styling information for the individual todo boxes.*/
 .todo_box {
   height: auto;
   overflow-x: hidden;
@@ -221,6 +225,7 @@ html, body {
   margin-bottom: 3px;
 }
 
+/*This is the styling information information for the individual todo boxes when the mouse hovers over them.*/
 .todo_box:hover {
   opacity: 0.8;
   box-shadow: 2px 2px 15px 2px #616161;
@@ -273,6 +278,7 @@ html, body {
   overflow: hidden;
 }
 
+/*This is thr styling information for the popup menu to change the background.*/
 .background_menu_popup {
   min-width:15.5vw;
   max-width: 18vw;
@@ -297,11 +303,9 @@ html, body {
   color: black:
 }
 
-
 .background_menu_popup .close1:hover {
   opacity: 0.8;
 }
-
 
 /*This is the styling information for button that closes the event menu popup.*/
 .event_menu_popup .close {
@@ -340,8 +344,19 @@ html, body {
   font-family: 'Lato', sans-serif;
 }
 
-/*----------IMAGES----------*/
+/*This is the styling information for the form input text boxes.*/
+input[type=text] {
+  padding: 2%;
+  font-family: 'Lato', sans-serif;
+  width: 120%;
+}
 
+/*This is the styling information for the text inside the textarea form input.*/
+textarea {
+  resize: none;
+  width: 120%;
+  font-family: 'Lato', sans-serif;
+}
 
 /*----------OTHER----------*/
 
@@ -372,12 +387,6 @@ html, body {
     display: none; */
   }
 
-input[type=text] {
-  padding: 2%;
-  font-family: 'Lato', sans-serif;
-  width: 120%;
-}
-
 .form_labels {
   display: inline-block;
 }
@@ -388,10 +397,3 @@ input[type=text] {
   margin-left: 1vw;
   left: 0;
 }
-
-textarea {
-  resize: none;
-  width: 120%;
-}
-
-/*To do list follows*/
